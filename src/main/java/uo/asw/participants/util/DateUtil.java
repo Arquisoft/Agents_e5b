@@ -25,7 +25,7 @@ public class DateUtil {
 		int nacimientoDia = nacimiento.get(Calendar.DAY_OF_YEAR);
 
 		// Todavía no ha cumplido los años
-		if (nacimientoDia - hoyDia < 0)
+		if (hoyDia < nacimientoDia)
 			return fechaActual.get(Calendar.YEAR)
 					- nacimiento.get(Calendar.YEAR) - 1;
 		else
