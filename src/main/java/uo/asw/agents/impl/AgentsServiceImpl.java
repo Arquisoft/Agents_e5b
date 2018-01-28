@@ -1,18 +1,18 @@
-package uo.asw.participants.impl;
+package uo.asw.agents.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import uo.asw.agents.AgentsService;
+import uo.asw.agents.util.CitizenMin;
 import uo.asw.dbManagement.CitizenDAO;
 import uo.asw.dbManagement.model.Citizen;
-import uo.asw.participants.ParticipantsService;
-import uo.asw.participants.util.CitizenMin;
 
 /**
  * Created by Irazusta on 15/02/2017.
  */
 @Service
-public class ParticipantsServiceImpl implements ParticipantsService {
+public class AgentsServiceImpl implements AgentsService {
     @Autowired
     private CitizenDAO citizenDAO;
 

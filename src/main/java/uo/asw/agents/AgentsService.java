@@ -1,14 +1,14 @@
-package uo.asw.participants;
+package uo.asw.agents;
 
 
+import uo.asw.agents.util.CitizenMin;
 import uo.asw.dbManagement.model.Citizen;
-import uo.asw.participants.util.CitizenMin;
 
 /**
  * Servicio de participantes
  * @since 0.0.1
  */
-public interface ParticipantsService {
+public interface AgentsService {
     CitizenMin getParticipantsInfo(String login, String password);
     Citizen changeInfo(Citizen updatedData);
 }

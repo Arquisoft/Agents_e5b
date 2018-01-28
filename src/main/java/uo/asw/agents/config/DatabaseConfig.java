@@ -1,4 +1,4 @@
-package uo.asw.participants.config;
+package uo.asw.agents.config;
 
 import java.util.Properties;
 

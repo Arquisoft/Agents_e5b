@@ -1,8 +1,8 @@
-package uo.asw.participants.controller;
+package uo.asw.agents.controller;
 
 import org.springframework.http.ResponseEntity;
 
-import uo.asw.participants.util.CitizenMin;
+import uo.asw.agents.util.CitizenMin;
 
 import java.util.Map;
 

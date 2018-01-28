@@ -1,4 +1,4 @@
-package uo.asw.participants.controller.impl;
+package uo.asw.agents.controller.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import uo.asw.participants.ParticipantsService;
-import uo.asw.participants.controller.CitzenController;
-import uo.asw.participants.util.CitizenMin;
+import uo.asw.agents.AgentsService;
+import uo.asw.agents.controller.CitzenController;
+import uo.asw.agents.util.CitizenMin;
 
 import java.util.Map;
 
@@ -20,7 +20,7 @@ import java.util.Map;
 public class CitzenControllerImpl implements CitzenController {
 
 	@Autowired
-	private ParticipantsService participantsService;
+	private AgentsService participantsService;
 
 	@Override
 	@RequestMapping(value = "/user", method = RequestMethod.POST,

@@ -1,4 +1,4 @@
-package uo.asw.participants.controller;
+package uo.asw.agents.controller;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import uo.asw.agents.util.Check;
 import uo.asw.dbManagement.CitizenDAO;
 import uo.asw.dbManagement.model.Citizen;
-import uo.asw.participants.util.Check;
 
 @Controller
 public class WebController {
