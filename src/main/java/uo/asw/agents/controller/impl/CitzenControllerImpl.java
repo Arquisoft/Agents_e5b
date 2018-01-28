@@ -20,7 +20,7 @@ import java.util.Map;
 public class CitzenControllerImpl implements CitzenController {
 
 	@Autowired
-	private AgentsService participantsService;
+	private AgentsService agentsService;
 
 	@Override
 	@RequestMapping(value = "/user", method = RequestMethod.POST,
@@ -34,7 +34,7 @@ public class CitzenControllerImpl implements CitzenController {
 		String login, password;
 		login = (String) payload.get("login");
 		password = (String) payload.get("password");
-		CitizenMin c = participantsService.getAgentInfo(login, password);
+		CitizenMin c = agentsService.getAgentInfo(login, password);
 		if(c == null){
 			return new ResponseEntity<CitizenMin>(HttpStatus.NOT_FOUND);
 		}

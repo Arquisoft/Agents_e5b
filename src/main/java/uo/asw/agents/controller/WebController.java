@@ -73,7 +73,7 @@ public class WebController {
 		Citizen c = null;
 
 		if (user != null && password != null) {
-			c = cc.getParticipant(user, password);
+			c = cc.getAgent(user, password);
 			if (c != null) {
 				session.setAttribute("citizen", c);
 				model.addAttribute("resultado", "Bienvenid@ " + c.getNombre());
