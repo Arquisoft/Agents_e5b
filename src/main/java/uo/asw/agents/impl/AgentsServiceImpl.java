@@ -17,7 +17,7 @@ public class AgentsServiceImpl implements AgentsService {
     private CitizenDAO citizenDAO;
 
     @Override
-    public CitizenMin getParticipantsInfo(String login, String password) {//TODO - Renombrar a getParticipantInfo (sin la s)
+    public CitizenMin getAgentInfo(String login, String password) {//TODO - Renombrar a getParticipantInfo (sin la s)
        Citizen c = citizenDAO.getParticipant(login, password);
        if(c != null){
     	   return new CitizenMin(c.getNombre(), c.getApellidos(), c.getFechaNacimiento(), c.getId(), c.getEmail());

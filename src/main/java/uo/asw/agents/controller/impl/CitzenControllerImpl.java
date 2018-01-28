@@ -34,7 +34,7 @@ public class CitzenControllerImpl implements CitzenController {
 		String login, password;
 		login = (String) payload.get("login");
 		password = (String) payload.get("password");
-		CitizenMin c = participantsService.getParticipantsInfo(login, password);
+		CitizenMin c = participantsService.getAgentInfo(login, password);
 		if(c == null){
 			return new ResponseEntity<CitizenMin>(HttpStatus.NOT_FOUND);
 		}
