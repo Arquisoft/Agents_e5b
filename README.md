@@ -53,7 +53,7 @@ Skeleton of participants module
 ### Formato de retorn JSON
    ```json
    {
-     "name": "nombre",
+     "name": Nombre,
      "location":  Coordenadas (opcional),
      "email": Email,
      "id": identificador,
