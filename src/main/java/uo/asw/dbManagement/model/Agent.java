@@ -16,7 +16,7 @@ import java.util.Date;
 @XmlRootElement
 @Entity
 @Table(name = "citizen")
-public class Citizen {
+public class Agent {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,11 +43,11 @@ public class Citizen {
 	@NotNull
 	private String nacionalidad;
 	
-	public Citizen(){}
+	public Agent(){}
 	
 	
 
-	public Citizen(String contraseña, String nombreUsuario, String dni,
+	public Agent(String contraseña, String nombreUsuario, String dni,
 			String nombre, String apellidos, Date fechaNacimiento,
 			String email, String direccionPostal, String nacionalidad) {
 		super();
@@ -154,7 +154,7 @@ public class Citizen {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Citizen other = (Citizen) obj;
+		Agent other = (Agent) obj;
 		if (dni == null) {
 			if (other.dni != null)
 				return false;

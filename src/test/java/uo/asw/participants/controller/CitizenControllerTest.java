@@ -16,8 +16,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import uo.asw.Application;
-import uo.asw.dbManagement.CitizenDAO;
-import uo.asw.dbManagement.model.Citizen;
+import uo.asw.dbManagement.AgentDAO;
+import uo.asw.dbManagement.model.Agent;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -64,7 +64,7 @@ public class CitizenControllerTest {
             Charset.forName("utf8"));
 
     @Autowired
-    private CitizenDAO citizenDAO;
+    private AgentDAO citizenDAO;
 
     @Before
     public void setUp() throws Exception {
@@ -83,7 +83,7 @@ public class CitizenControllerTest {
             }
         };
 
-        Citizen c = citizenDAO.getAgent("juan", "1234");
+        Agent c = citizenDAO.getAgent("juan", "1234");
         mockMvc.perform(post("/user")
                 .content(this.json(payload))
                 .contentType(JSONContentType))
@@ -162,7 +162,7 @@ public class CitizenControllerTest {
             }
         };
 
-        Citizen c = citizenDAO.getAgent("juan", "1234");
+        Agent c = citizenDAO.getAgent("juan", "1234");
         mockMvc.perform(post("/user")
                 .content(this.json(payload))
                 .contentType(JSONContentType)

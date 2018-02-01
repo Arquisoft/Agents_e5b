@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import uo.asw.agents.util.Check;
-import uo.asw.dbManagement.CitizenDAO;
-import uo.asw.dbManagement.model.Citizen;
+import uo.asw.dbManagement.AgentDAO;
+import uo.asw.dbManagement.model.Agent;
 
 @Controller
 public class WebController {
@@ -51,7 +51,7 @@ public class WebController {
 	// }
 
 	@Autowired
-	private CitizenDAO cc;
+	private AgentDAO cc;
 
 	/**
 	 * Recibe los datos de login del usuario, busca si exite ese usuario y en
@@ -70,7 +70,7 @@ public class WebController {
 	@RequestMapping(value = "/info", method = RequestMethod.POST)
 	public String showInfo(HttpSession session, @RequestParam String user, @RequestParam String password, Model model) {
 
-		Citizen c = null;
+		Agent c = null;
 
 		if (user != null && password != null) {
 			c = cc.getAgent(user, password);
@@ -111,7 +111,7 @@ public class WebController {
 	@RequestMapping(value = "/changeInfo", method = RequestMethod.POST)
 	public String changePassword(HttpSession session, @RequestParam String password, @RequestParam String newPassword,
 			Model model) {
-		Citizen c = (Citizen) session.getAttribute("citizen");
+		Agent c = (Agent) session.getAttribute("citizen");
 		if (c != null) {
 			if (c.getContraseña().equals(password) && !newPassword.isEmpty()) {
 				c.setContraseña(newPassword);
@@ -137,7 +137,7 @@ public class WebController {
 	 */
 	@RequestMapping(value = "/changeEmail", method = RequestMethod.POST)
 	public String changeEmail(HttpSession session, @RequestParam String email, Model model){
-		Citizen c = (Citizen) session.getAttribute("citizen");
+		Agent c = (Agent) session.getAttribute("citizen");
 		if(c != null){
 			if(!email.isEmpty() && Check.validateEmail(email)){
 				c.setEmail(email);

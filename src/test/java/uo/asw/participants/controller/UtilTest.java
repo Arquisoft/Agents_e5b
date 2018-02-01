@@ -16,7 +16,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import uo.asw.Application;
 import uo.asw.agents.util.Check;
-import uo.asw.agents.util.CitizenMin;
+import uo.asw.agents.util.AgentMin;
 import uo.asw.agents.util.DateUtil;
 
 
@@ -27,7 +27,7 @@ public class UtilTest {
 
 	
 	private static String[] validEmails, invalidEmails;
-	private CitizenMin citizenMin;
+	private AgentMin citizenMin;
 	
 	 /**
      * Carga de datos
@@ -52,7 +52,7 @@ public class UtilTest {
 	
     @Before
     public void setUp() throws Exception {
-    	citizenMin = new CitizenMin("nombre", "apellido", new Date(), (long) 1, "usuario@gmail.com");
+    	citizenMin = new AgentMin("nombre", "apellido", new Date(), (long) 1, "usuario@gmail.com");
     }
 
 	@Test

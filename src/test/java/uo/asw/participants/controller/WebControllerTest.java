@@ -19,8 +19,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import uo.asw.Application;
-import uo.asw.dbManagement.CitizenDAO;
-import uo.asw.dbManagement.model.Citizen;
+import uo.asw.dbManagement.AgentDAO;
+import uo.asw.dbManagement.model.Agent;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -34,7 +34,7 @@ public class WebControllerTest {
     private MockMvc mockMvc;
     
     @Autowired
-    private CitizenDAO citizenDAO;
+    private AgentDAO citizenDAO;
      
     @Before
     public void init() {
@@ -99,7 +99,7 @@ public class WebControllerTest {
    @Test
    public void changePasswordTest1() throws Exception {
    	
-	   Citizen c = citizenDAO.getAgent("juan", "1234");
+	   Agent c = citizenDAO.getAgent("juan", "1234");
 
 	   //Cambio de contraseña
        mockMvc.perform(post("/changeInfo")
@@ -123,7 +123,7 @@ public class WebControllerTest {
    //Contraseña incorrecta
    public void changePasswordTest2() throws Exception {
    	
-	   Citizen c = citizenDAO.getAgent("juan", "1234");
+	   Agent c = citizenDAO.getAgent("juan", "1234");
 
        mockMvc.perform(post("/changeInfo")
     	.param("password", "password")
@@ -136,7 +136,7 @@ public class WebControllerTest {
    @Test
    public void changeEmailTest1() throws Exception {
    	
-	   Citizen c = citizenDAO.getAgent("juan", "1234");
+	   Agent c = citizenDAO.getAgent("juan", "1234");
 
 	   //Cambio de email
        mockMvc.perform(post("/changeEmail")

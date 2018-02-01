@@ -2,7 +2,7 @@ package uo.asw.agents.util;
 
 import java.util.Date;
 
-public class CitizenMin {
+public class AgentMin {
 
 	private String firstName;
 	private String lastName;
@@ -12,7 +12,7 @@ public class CitizenMin {
 	
 	
 	
-	public CitizenMin(String firstName, String lastName, Date fechaNacimiento, Long id,
+	public AgentMin(String firstName, String lastName, Date fechaNacimiento, Long id,
 			String email) {
 		super();
 		this.firstName = firstName;

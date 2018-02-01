@@ -2,8 +2,8 @@ package uo.asw.dbManagement.impl;
 
 import org.springframework.stereotype.Repository;
 
-import uo.asw.dbManagement.CitizenDAO;
-import uo.asw.dbManagement.model.Citizen;
+import uo.asw.dbManagement.AgentDAO;
+import uo.asw.dbManagement.model.Agent;
 
 import java.util.Date;
 import java.util.List;
@@ -17,19 +17,19 @@ import javax.transaction.Transactional;
  */
 @Repository
 @Transactional
-public class CitizenDAODummy implements CitizenDAO {
-    private static Citizen dummyCitizen;
+public class AgentDAODummy implements AgentDAO {
+    private static Agent dummyCitizen;
     @PersistenceContext
     private EntityManager entityManager;
     
     static {
-        dummyCitizen = new Citizen("pass", "dummy", "123456", "Clara", "Oswald", new Date(), "clara@tardis.co.uk", "The Hyperspace", "Inglesa");
+        dummyCitizen = new Agent("pass", "dummy", "123456", "Clara", "Oswald", new Date(), "clara@tardis.co.uk", "The Hyperspace", "Inglesa");
     }
 
     @Override
-    public Citizen getAgent(String login, String password) {
+    public Agent getAgent(String login, String password) {
     	@SuppressWarnings("unchecked")
-		List<Citizen> citizen =  entityManager.createQuery(
+		List<Agent> citizen =  entityManager.createQuery(
     	        "from Citizen where nombreUsuario = ?1 and contraseña = ?2")
     	        .setParameter(1, login).setParameter(2, password)
     	        .getResultList();
@@ -40,7 +40,7 @@ public class CitizenDAODummy implements CitizenDAO {
     }
 
     @Override
-    public Citizen updateInfo(Citizen toUpdate) {
+    public Agent updateInfo(Agent toUpdate) {
     	entityManager.merge(toUpdate);
         dummyCitizen = toUpdate;
         return dummyCitizen;

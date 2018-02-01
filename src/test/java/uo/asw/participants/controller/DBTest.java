@@ -9,8 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import uo.asw.Application;
-import uo.asw.dbManagement.CitizenDAO;
-import uo.asw.dbManagement.model.Citizen;
+import uo.asw.dbManagement.AgentDAO;
+import uo.asw.dbManagement.model.Agent;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -20,13 +20,13 @@ public class DBTest {
 
 	
 	@Autowired
-    private CitizenDAO citizenDAO;
+    private AgentDAO citizenDAO;
 	
 	@Test
     public void getExistingCitizen() throws Exception {
-    	Citizen c1 = citizenDAO.getAgent("juan", "1234");
-    	Citizen c2 = citizenDAO.getAgent("pedro", "1234");
-    	Citizen c3 = citizenDAO.getAgent("raul", "1234");
+    	Agent c1 = citizenDAO.getAgent("juan", "1234");
+    	Agent c2 = citizenDAO.getAgent("pedro", "1234");
+    	Agent c3 = citizenDAO.getAgent("raul", "1234");
 
 		assertEquals("juan", c1.getNombreUsuario());
 		assertEquals("1234", c1.getContraseña());
@@ -40,9 +40,9 @@ public class DBTest {
     
     @Test
     public void getNonExistingCitizen() throws Exception {
-    	Citizen c1 = citizenDAO.getAgent("antonio", "1234");
-    	Citizen c2 = citizenDAO.getAgent("daniel", "1234");
-    	Citizen c3 = citizenDAO.getAgent("rodrigo", "1234");
+    	Agent c1 = citizenDAO.getAgent("antonio", "1234");
+    	Agent c2 = citizenDAO.getAgent("daniel", "1234");
+    	Agent c3 = citizenDAO.getAgent("rodrigo", "1234");
 
     	assertNull(c1);
     	assertNull(c2);
@@ -53,9 +53,9 @@ public class DBTest {
     @Test
     public void wrongPasswordTest() throws Exception {
     	
-    	Citizen c1 = citizenDAO.getAgent("juan", "password");
-    	Citizen c2 = citizenDAO.getAgent("pedro", "password");
-    	Citizen c3 = citizenDAO.getAgent("raul", "password");
+    	Agent c1 = citizenDAO.getAgent("juan", "password");
+    	Agent c2 = citizenDAO.getAgent("pedro", "password");
+    	Agent c3 = citizenDAO.getAgent("raul", "password");
     	
     	assertNull(c1);
     	assertNull(c2);
@@ -65,9 +65,9 @@ public class DBTest {
     @Test
     public void wrongUserPasswordTest() throws Exception {
     	
-    	Citizen c1 = citizenDAO.getAgent("juan@gmail.com", "password");
-    	Citizen c2 = citizenDAO.getAgent("pedro@gmail.com", "password");
-    	Citizen c3 = citizenDAO.getAgent("raul@gmail.com", "password");
+    	Agent c1 = citizenDAO.getAgent("juan@gmail.com", "password");
+    	Agent c2 = citizenDAO.getAgent("pedro@gmail.com", "password");
+    	Agent c3 = citizenDAO.getAgent("raul@gmail.com", "password");
     	
     	assertNull(c1);
     	assertNull(c2);
@@ -77,7 +77,7 @@ public class DBTest {
     @Test
     public void updateTest() throws Exception {
     	
-    	Citizen c1 = citizenDAO.getAgent("juan", "1234");
+    	Agent c1 = citizenDAO.getAgent("juan", "1234");
     	
     	//Cambio de contraseña
     	c1.setContraseña("new password");
