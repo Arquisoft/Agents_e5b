@@ -63,15 +63,14 @@ Skeleton of participants module
    ```
 ### Formato retorno XML
    ```xml
-   <CitizenMin>
-       <firstName>nombre</firstName>
-       <lastName>apellidos</lastName>
-       <edad>edad</edad>
-       <id>id_usuario</id>
-       <email>email</email>
-       <address>direccion</address>
-       <nationality>nacionalidad</nationality>
-   </CitizenMin>
+   <AgentMin>
+       <name>Nombre</name>
+       <location>Coordenadas (opcional)</location>
+       <email>Email</email>
+       <id>identificador</id>
+       <kind>tipo de usuario</kind>
+       <kindCode>código numérico del tipo de usuario</kindCode>
+   </AgentMin>
    ```
    
 
