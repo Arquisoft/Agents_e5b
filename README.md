@@ -42,7 +42,7 @@ Skeleton of participants module
    El punto de entrada se encuentra en http://localhost:8080/user.
    
    Acepta peticiones POST en formato JSON con el contenido:
-   ``{"login":"login_usuario", "password":"contraseña_usuario"}``
+   ``{"login": usuario, "password": password, "kind": tipo de agente}``
    
    Devuelve la informacion del usuario si las credenciales en formato 
    JSON o XML segun se indique en la cabecera de la petición.
