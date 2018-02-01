@@ -53,13 +53,12 @@ Skeleton of participants module
 ### Formato de retorn JSON
    ```json
    {
-     "firstName": "nombre",
-     "lastName": "apellidos",
-     "edad": edad(int),
-     "id": id_usuario(long),
-     "email": "email",
-     "address": "direccion",
-     "nationality": "nacionalidad"
+     "name": "nombre",
+     "location":  Coordenadas (opcional),
+     "email": Email,
+     "id": identificador,
+     "kind": tipo de usuario,
+     "kindCode": código numérico del tipo de usuario,
    }
    ```
 ### Formato retorno XML
