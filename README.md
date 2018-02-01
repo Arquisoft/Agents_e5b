@@ -10,13 +10,18 @@
 Skeleton of participants module
 
 # Authors
-
+- Antiguos Autores
 - Herminio García González (@herminiogg)
 - Jose Emilio Labra Gayo (@labra)
 - Sergio Flórez Vallina (@zerolfer)
 - Rubén García Ruiz (@RubenGarciaR)
 - Sonia Gestal Huelga (@sonia94)
 - Luis Irazusta Lorenzo (@Fuegon)
+- Nuevos Autores
+- Carlos Sanabria Miranda (@CarlosSanabriaM)
+- Manuel Fernández Antuña (@uo2999)
+- Adrián Pérez Carou (@adrycarou896)
+- Mª Rosa Valdés Pire (@RosaValdesPire)
 
 # Funcionamiento:
 ## Interfaz HTML
