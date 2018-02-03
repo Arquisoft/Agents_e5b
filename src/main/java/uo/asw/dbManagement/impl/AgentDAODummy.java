@@ -16,7 +16,7 @@ import javax.transaction.Transactional;
  */
 @Repository
 @Transactional
-public class AgentDAODummy implements AgentDAO {
+public class AgentDAODummy implements AgentDAO { //TODO - Si se quita lo de dummyAgent se podria renombrar la clase a AgentDatoImpl
     private static Agent dummyAgent;
     @PersistenceContext
     private EntityManager entityManager;
@@ -27,11 +27,12 @@ public class AgentDAODummy implements AgentDAO {
     }
 
     @Override
-    public Agent getAgent(String login, String password, String kind) {
+    public Agent getAgent(String login, String password, String kind) {//TODO- Actualizar para que tenga en cuenta el kind
     	@SuppressWarnings("unchecked")
-		List<Agent> citizen =  entityManager.createQuery(
+    	//TODO-No hace EntityManagerFactory.createEntityManager() !! ???
+		List<Agent> citizen =  entityManager.createQuery(//TODO - Renombrar citizen a agent
     	        //"from Citizen where nombreUsuario = ?1 and contraseña = ?2"
-				"from Agent where nombreUsuario = ?1 and contraseña = ?2")
+				"from Agent where nombreUsuario = ?1 and contraseña = ?2") //TODO - Consulta sin select y sin hacer Agent a ???
     	        .setParameter(1, login).setParameter(2, password)
     	        .getResultList();
     	if(citizen.isEmpty())
@@ -40,10 +41,22 @@ public class AgentDAODummy implements AgentDAO {
        // return dummyAgent;
     }
 
+    //TODO - Creo que está mal, revisar el 'todo' de abajo
+    //Se esta retornando el mismo objeto que se pasa como parametro.
+    //Habria que retornar el devuelto por merge, que está en estado Persistent.
     @Override
     public Agent updateInfo(Agent toUpdate) {
     	entityManager.merge(toUpdate);
         dummyAgent = toUpdate;
         return dummyAgent;
     }
+    
+    //TODO - Revisar esto
+    //Quizás haciendo que el metodo updateInfo haga esto, no hace falta el dummyAgent
+    
+//    @Override
+//    public Agent updateInfo(Agent toUpdate) {
+//    	return entityManager.merge(toUpdate); //The merge method will return the merged object attached to the entityManager.
+//    }
+    
 }

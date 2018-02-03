@@ -2,12 +2,14 @@ package uo.asw.participants.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+
 import uo.asw.Application;
 import uo.asw.dbManagement.AgentDAO;
 import uo.asw.dbManagement.model.Agent;
@@ -23,75 +25,160 @@ public class DBTest {
     private AgentDAO citizenDAO;
 	
 	@Test
-    public void getExistingCitizen() throws Exception {
-    	Agent c1 = citizenDAO.getAgent("juan", "1234");
-    	Agent c2 = citizenDAO.getAgent("pedro", "1234");
-    	Agent c3 = citizenDAO.getAgent("raul", "1234");
+	/**
+	 * Prueba que la información de agentes válidos es recuperada correctamente de la BD
+	 * @throws Exception
+	 */
+    public void testGetExistingAgents() throws Exception {
+    	Agent person = citizenDAO.getAgent("31668313G", "1234", "Person");
+    	Agent entity = citizenDAO.getAgent("A58818501", "1234", "Entity");
+    	Agent sensor = citizenDAO.getAgent("525695S", "1234", "Sensor");
 
-		assertEquals("juan", c1.getNombreUsuario());
-		assertEquals("1234", c1.getContraseña());
+		assertEquals("31668313G", person.getNombreUsuario());
+		assertEquals("1234", person.getContraseña());
+		assertEquals("Person", person.getTipo());
 		
-		assertEquals("pedro", c2.getNombreUsuario());
-		assertEquals("1234", c2.getContraseña());
+		assertEquals("A58818501", entity.getNombreUsuario());
+		assertEquals("1234", entity.getContraseña());
+		assertEquals("Entity", entity.getTipo());
 		
-		assertEquals("raul", c3.getNombreUsuario());
-		assertEquals("1234", c3.getContraseña());
+		assertEquals("525695S", sensor.getNombreUsuario());
+		assertEquals("1234", sensor.getContraseña());
+		assertEquals("Sensor", sensor.getTipo());
     }
     
     @Test
-    public void getNonExistingCitizen() throws Exception {
-    	Agent c1 = citizenDAO.getAgent("antonio", "1234");
-    	Agent c2 = citizenDAO.getAgent("daniel", "1234");
-    	Agent c3 = citizenDAO.getAgent("rodrigo", "1234");
+    /**
+	 * Agentes con login incorrecto no son retornados por la BD
+	 * @throws Exception
+	 */
+    public void testAgentNotFoundBecauseLoginIsNotValid() throws Exception {
+    	Agent person = citizenDAO.getAgent("11111111H", "1234", "Person");
+    	Agent entity = citizenDAO.getAgent("11111111H", "1234", "Entity");
+    	Agent sensor = citizenDAO.getAgent("11111111H", "1234", "Sensor");
 
-    	assertNull(c1);
-    	assertNull(c2);
-    	assertNull(c3);
+    	assertNull(person);
+    	assertNull(entity);
+    	assertNull(sensor);
 
      }
     
     @Test
-    public void wrongPasswordTest() throws Exception {
+    /**
+	 * Agentes con password incorrecto no son retornados por la BD
+	 * @throws Exception
+	 */
+    public void testAgentNotFoundBecausePasswordIsNotValid() throws Exception {
+    	Agent person = citizenDAO.getAgent("31668313G", "invalidPass", "Person");
+    	Agent entity = citizenDAO.getAgent("A58818501", "invalidPass", "Entity");
+    	Agent sensor = citizenDAO.getAgent("525695S", "invalidPass", "Sensor");
     	
-    	Agent c1 = citizenDAO.getAgent("juan", "password");
-    	Agent c2 = citizenDAO.getAgent("pedro", "password");
-    	Agent c3 = citizenDAO.getAgent("raul", "password");
-    	
-    	assertNull(c1);
-    	assertNull(c2);
-    	assertNull(c3);
+    	assertNull(person);
+    	assertNull(entity);
+    	assertNull(sensor);
     }
     
     @Test
-    public void wrongUserPasswordTest() throws Exception {
+    /**
+	 * Agentes con kind incorrecto no son retornados por la BD
+	 * @throws Exception
+	 */
+    public void testAgentNotFoundBecauseKindIsNotValid() throws Exception {
+    	Agent person = citizenDAO.getAgent("31668313G", "1234", "KindNotValid");
+    	Agent entity = citizenDAO.getAgent("A58818501", "1234", "KindNotValid");
+    	Agent sensor = citizenDAO.getAgent("525695S", "1234", "KindNotValid");
     	
-    	Agent c1 = citizenDAO.getAgent("juan@gmail.com", "password");
-    	Agent c2 = citizenDAO.getAgent("pedro@gmail.com", "password");
-    	Agent c3 = citizenDAO.getAgent("raul@gmail.com", "password");
-    	
-    	assertNull(c1);
-    	assertNull(c2);
-    	assertNull(c3);
+    	assertNull(person);
+    	assertNull(entity);
+    	assertNull(sensor);
     }
     
     @Test
-    public void updateTest() throws Exception {
+    /**
+	 * Agentes con login y password incorrectos no son retornados por la BD
+	 * @throws Exception
+	 */
+    public void testAgentNotFoundBecauseLoginAndPasswordAreNotValid() throws Exception {
+    	Agent person = citizenDAO.getAgent("11111111H", "invalidPass", "Person");
+    	Agent entity = citizenDAO.getAgent("11111111H", "invalidPass", "Entity");
+    	Agent sensor = citizenDAO.getAgent("11111111H", "invalidPass", "Sensor");
     	
-    	Agent c1 = citizenDAO.getAgent("juan", "1234");
+    	assertNull(person);
+    	assertNull(entity);
+    	assertNull(sensor);
+    }
+    
+    @Test
+    /**
+	 * Agentes con login y kind incorrectos no son retornados por la BD
+	 * @throws Exception
+	 */
+    public void testAgentNotFoundBecauseLoginAndKindAreNotValid() throws Exception {
+    	Agent person = citizenDAO.getAgent("11111111H", "1234", "KindNotValid");
+    	Agent entity = citizenDAO.getAgent("11111111H", "1234", "KindNotValid");
+    	Agent sensor = citizenDAO.getAgent("11111111H", "1234", "KindNotValid");
+    	
+    	assertNull(person);
+    	assertNull(entity);
+    	assertNull(sensor);
+    }
+    
+    @Test
+    /**
+	 * Agentes con password y kind incorrectos no son retornados por la BD
+	 * @throws Exception
+	 */
+    public void testAgentNotFoundBecausePasswordAndKindAreNotValid() throws Exception {
+    	Agent person = citizenDAO.getAgent("31668313G", "invalidPass", "KindNotValid");
+    	Agent entity = citizenDAO.getAgent("A58818501", "invalidPass", "KindNotValid");
+    	Agent sensor = citizenDAO.getAgent("525695S", "invalidPass", "KindNotValid");
+    	
+    	assertNull(person);
+    	assertNull(entity);
+    	assertNull(sensor);
+    }
+    
+    @Test
+    /**
+	 * Agente válido al que se la actualiza la contraseña en la BD, al ser recuperado
+	 * posteriormente de la BD y consultar su contraseña, tiene la contraseña nueva
+	 * @throws Exception
+	 */
+    public void testUpdatePassword() throws Exception {
+    	Agent agent = citizenDAO.getAgent("31668313G", "1234", "Person");
     	
     	//Cambio de contraseña
-    	c1.setContraseña("new password");
-       	citizenDAO.updateInfo(c1);
+    	agent.setContraseña("newPassword");
+       	agent = citizenDAO.updateInfo(agent);
        
-       	assertEquals("new password", c1.getContraseña());
+       	assertEquals("newPassword", agent.getContraseña());
        	
        	//Cambio de contraseña por la original
-       	c1.setContraseña("1234");
-       	citizenDAO.updateInfo(c1);
+       	agent.setContraseña("1234");
+       	agent = citizenDAO.updateInfo(agent);
        	
-       	assertEquals("1234", c1.getContraseña());
-
-        	
+       	assertEquals("1234", agent.getContraseña()); 	
     }
+    
+    //El test original (adaptado a agents) hacia esto, es decir, comprobaba que el objeto agent que esta en estado detached
+    //tiene la misma contraseña que se le acaba de poner en el metodo, lo cual obviamente se va a cumplir.
+    //Deberia recuperar el objeto devuelto por updateInfo para actualizarse con el contenido de la BD.
+    //Esto es lo que hago en el metodo de arriba
+    
+//    public void testUpdatePassword() throws Exception {
+//    	Agent agent = citizenDAO.getAgent("31668313G", "1234", "Person");
+//    	
+//    	//Cambio de contraseña
+//    	agent.setContraseña("newPassword");
+//       	citizenDAO.updateInfo(agent);
+//       
+//       	assertEquals("newPassword", agent.getContraseña());
+//       	
+//       	//Cambio de contraseña por la original
+//       	agent.setContraseña("1234");
+//       	citizenDAO.updateInfo(agent);
+//       	
+//       	assertEquals("1234", agent.getContraseña(); 	
+//    }
 
 }

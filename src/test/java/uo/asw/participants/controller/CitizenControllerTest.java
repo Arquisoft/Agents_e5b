@@ -76,7 +76,7 @@ public class CitizenControllerTest { //TODO - Renombrar a AgentControllerTest, p
      * Comprueba que el usuario se obtiene correctamente en formato JSON
      * @throws Exception
      */
-    public void getUserJSON() throws Exception {
+    public void testGetValidUserJSON() throws Exception {
         Map<String, String> payload = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 
@@ -102,7 +102,7 @@ public class CitizenControllerTest { //TODO - Renombrar a AgentControllerTest, p
      * Usuario con login no registrado
      * @throws Exception
      */
-    public void testNotFoundLogin() throws Exception {
+    public void testAgentNotFoundBecauseLoginIsNotValid() throws Exception {
         Map<String, String> payload = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 
@@ -125,13 +125,13 @@ public class CitizenControllerTest { //TODO - Renombrar a AgentControllerTest, p
      * Usuario con password incorrecta
      * @throws Exception
      */
-    public void testNotFoundPassword() throws Exception {
+    public void testAgentNotFoundBecausePasswordIsNotValid() throws Exception {
         Map<String, String> payload = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 
 			{
 				put("login", "31668313G");
-                put("password", "1234abcde");
+                put("password", "invalidPass");
                 put("kind", "Person");
             }
         };
@@ -148,7 +148,7 @@ public class CitizenControllerTest { //TODO - Renombrar a AgentControllerTest, p
      * Usuario con kind incorrecto
      * @throws Exception
      */
-    public void testNotFoundKind() throws Exception {
+    public void testAgentNotFoundBecauseKindIsNotValid() throws Exception {
         Map<String, String> payload = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 
@@ -171,13 +171,13 @@ public class CitizenControllerTest { //TODO - Renombrar a AgentControllerTest, p
      * Usuario con login y password incorrecto
      * @throws Exception
      */
-    public void testNotFoundLoginAndPassword() throws Exception {
+    public void testAgentNotFoundBecauseLoginAndPasswordAreNotValid() throws Exception {
         Map<String, String> payload = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 
 			{
                 put("login", "11111111H");
-                put("password", "1234abcde");
+                put("password", "invalidPass");
                 put("kind", "Person");
             }
         };
@@ -194,7 +194,7 @@ public class CitizenControllerTest { //TODO - Renombrar a AgentControllerTest, p
      * Usuario con login y kind incorrecto
      * @throws Exception
      */
-    public void testNotFoundLoginAndKind() throws Exception {
+    public void testAgentNotFoundBecauseLoginAndKindAreNotValid() throws Exception {
         Map<String, String> payload = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 
@@ -217,13 +217,13 @@ public class CitizenControllerTest { //TODO - Renombrar a AgentControllerTest, p
      * Usuario con password y kind incorrecto
      * @throws Exception
      */
-    public void testNotFoundPasswordAndKind() throws Exception {
+    public void testAgentNotFoundBecausePasswordAndKindAreNotValid() throws Exception {
         Map<String, String> payload = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 
 			{
                 put("login", "31668313G");
-                put("password", "1234abcde");
+                put("password", "invalidPass");
                 put("kind", "KindNotValid");
             }
         };
@@ -240,7 +240,7 @@ public class CitizenControllerTest { //TODO - Renombrar a AgentControllerTest, p
      * Comprueba que el usuario se obtiene correctamente en formato XML
      * @throws Exception
      */
-    public void getUserXML() throws Exception {
+    public void testGetValidUserXML() throws Exception {
         Map<String, String> payload = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 
