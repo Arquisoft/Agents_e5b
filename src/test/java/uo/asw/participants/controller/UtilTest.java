@@ -27,7 +27,7 @@ public class UtilTest {
 
 	
 	private static String[] validEmails, invalidEmails;
-	private AgentMin citizenMin;
+	private AgentMin agentMin;
 	
 	 /**
      * Carga de datos
@@ -52,7 +52,7 @@ public class UtilTest {
 	
     @Before
     public void setUp() throws Exception {
-    	citizenMin = new AgentMin("nombre", 1, (long) 1, "usuario@gmail.com");
+    	agentMin = new AgentMin((long) 1, "nombre", 1, "usuario@gmail.com");
     }
 
 	@Test
@@ -66,17 +66,17 @@ public class UtilTest {
 		int tipoCodigo=1;
 		String email = "fernando@gmail.com";
 
-		citizenMin.setId(id);
-		citizenMin.setName(nombre + apellidos);
-		citizenMin.setTipoCodigo(tipoCodigo);
-		citizenMin.setEmail(email);
+		agentMin.setId(id);
+		agentMin.setName(nombre + apellidos);
+		agentMin.setTipoCodigo(tipoCodigo);
+		agentMin.setEmail(email);
 
 	
-		assertEquals(id, citizenMin.getId());
-		assertEquals(nombre+apellidos, citizenMin.getName());
+		assertEquals(id, agentMin.getId());
+		assertEquals(nombre+apellidos, agentMin.getName());
 		//assertEquals(apellidos, citizenMin.getLastName());
 		//assertEquals(edad, citizenMin.getEdad());
-		assertEquals(email, citizenMin.getEmail());
+		assertEquals(email, agentMin.getEmail());
 		
 	}
 	

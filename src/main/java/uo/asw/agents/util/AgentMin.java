@@ -1,5 +1,7 @@
 package uo.asw.agents.util;
 
+//TODO - Averiguar para que sirve esta clase, porque creo que no se utiliza en ninún sitio salvo en los test
+//y en dichos tests se hace una comprobacion sin mucho sentido. Creo que está de relleno.
 public class AgentMin {
 	
 	private Long id;
@@ -7,9 +9,8 @@ public class AgentMin {
 	private int tipoCodigo;
 	private String email;
 	
-	public AgentMin(String name, int tipoCodigo, Long id,
+	public AgentMin(Long id, String name, int tipoCodigo,
 			String email) {
-		super();
 		this.name = name;
 		this.tipoCodigo = tipoCodigo;
 		this.id = id;
