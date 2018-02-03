@@ -27,10 +27,10 @@ public class AgentDAODummy implements AgentDAO {
     }
 
     @Override
-    public Agent getAgent(String login, String password) {
+    public Agent getAgent(String login, String password, String kind) {
     	@SuppressWarnings("unchecked")
 		List<Agent> citizen =  entityManager.createQuery(
-    	        /*"from Citizen where nombreUsuario = ?1 and contraseña = ?2"*/
+    	        //"from Citizen where nombreUsuario = ?1 and contraseña = ?2"
 				"from Agent where nombreUsuario = ?1 and contraseña = ?2")
     	        .setParameter(1, login).setParameter(2, password)
     	        .getResultList();

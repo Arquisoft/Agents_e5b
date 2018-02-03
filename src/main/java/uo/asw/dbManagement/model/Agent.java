@@ -19,7 +19,7 @@ public class Agent {
 	private Long id;
 	
 	@NotNull
-	@Column(name = "identificador", unique=true)
+	@Column(name = "identificador", unique=true)//TODO - Sobra name = "identificador" ??
 	private String identificador;
 	
 	@NotNull
@@ -37,8 +37,9 @@ public class Agent {
 	@NotNull
 	private String tipo;
 	
-	@NotNull
-	private int tipoCodigo;
+	//TODO - Quitar esto. No necesitamos saberlo no??
+	//@NotNull
+	//private int tipoCodigo;
 	
 	public Agent(){}
 	
@@ -54,7 +55,7 @@ public class Agent {
 		this.email = email;
 		this.localizacion = localizacion;
 		this.tipo = tipo;
-		this.tipoCodigo=tipoCodigo;
+		//this.tipoCodigo=tipoCodigo;
 	}
 
 
@@ -106,13 +107,13 @@ public class Agent {
 		this.tipo=tipo;
 	}
 	
-	public int getTipoCodigo(){
-		return tipoCodigo;
-	}
-	
-	public void setTipoCodigo(int tipoCodigo){
-		this.tipoCodigo=tipoCodigo;
-	}
+//	public int getTipoCodigo(){
+//		return tipoCodigo;
+//	}
+//	
+//	public void setTipoCodigo(int tipoCodigo){
+//		this.tipoCodigo=tipoCodigo;
+//	}
 	
 	public Long getId(){
 		return id;
@@ -153,7 +154,8 @@ public class Agent {
 				+ "email=" + email + ", "
 				+ "localizacion=" + localizacion + ", "
 				+ "tipo=" + tipo + ", "
-				+ "tipoCodigo=" + tipoCodigo + "]";
+				//+ "tipoCodigo=" + tipoCodigo
+				+ "]";
 				
 	}
 	

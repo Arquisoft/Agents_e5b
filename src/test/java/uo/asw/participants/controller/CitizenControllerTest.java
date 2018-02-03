@@ -40,7 +40,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Plantillas para los tests extraidos de los tutoriales de Spring (https://spring.io/guides/tutorials/bookmarks/)
  * @since 0.0.1
  */
-public class CitizenControllerTest {
+public class CitizenControllerTest { //TODO - Renombrar a AgentControllerTest, por ejemplo
 
     private MockMvc mockMvc;
     @SuppressWarnings("rawtypes")
@@ -64,7 +64,7 @@ public class CitizenControllerTest {
             Charset.forName("utf8"));
 
     @Autowired
-    private AgentDAO citizenDAO;
+    private AgentDAO agentDAO;
 
     @Before
     public void setUp() throws Exception {
@@ -72,36 +72,44 @@ public class CitizenControllerTest {
     }
 
     @Test
-    //Comprueba que el usuario se obtiene correctamente en formato JSON
+    /**
+     * Comprueba que el usuario se obtiene correctamente en formato JSON
+     * @throws Exception
+     */
     public void getUserJSON() throws Exception {
         Map<String, String> payload = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 
 			{
-                put("login", "juan");
+                put("login", "31668313G");
                 put("password", "1234");
+                put("kind", "Person");
             }
         };
 
-        Agent c = citizenDAO.getAgent("juan", "1234");
+        Agent agent = agentDAO.getAgent("31668313G", "1234", "Person");
         mockMvc.perform(post("/user")
                 .content(this.json(payload))
                 .contentType(JSONContentType))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$['email']", is(c.getEmail()))
+                .andExpect(jsonPath("$['email']", is(agent.getEmail()))
 
                 );
     }
 
     @Test
-    //Usuario con login no registrado
+    /**
+     * Usuario con login no registrado
+     * @throws Exception
+     */
     public void testNotFoundLogin() throws Exception {
         Map<String, String> payload = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 
 			{
-                put("login", "juanJUANjuan");
+                put("login", "11111111H");
                 put("password", "1234");
+                put("kind", "Person");
             }
         };
 
@@ -113,14 +121,18 @@ public class CitizenControllerTest {
     }
     
     @Test
-    //Usuario con password incorrecta
+    /**
+     * Usuario con password incorrecta
+     * @throws Exception
+     */
     public void testNotFoundPassword() throws Exception {
         Map<String, String> payload = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 
 			{
-                put("login", "juan");
+				put("login", "31668313G");
                 put("password", "1234abcde");
+                put("kind", "Person");
             }
         };
 
@@ -132,14 +144,18 @@ public class CitizenControllerTest {
     }
     
     @Test
-    //Usuario con password y login incorrecto
-    public void testNotFoundPasswordAndLogin() throws Exception {
+    /**
+     * Usuario con kind incorrecto
+     * @throws Exception
+     */
+    public void testNotFoundKind() throws Exception {
         Map<String, String> payload = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 
 			{
-                put("login", "juanJUANjuan");
-                put("password", "1234abcde");
+				put("login", "31668313G");
+                put("password", "1234");
+                put("kind", "KindNotValid");
             }
         };
 
@@ -151,24 +167,97 @@ public class CitizenControllerTest {
     }
     
     @Test
-    //Comprueba que el usuario se obtiene correctamente en formato XML
+    /**
+     * Usuario con login y password incorrecto
+     * @throws Exception
+     */
+    public void testNotFoundLoginAndPassword() throws Exception {
+        Map<String, String> payload = new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+
+			{
+                put("login", "11111111H");
+                put("password", "1234abcde");
+                put("kind", "Person");
+            }
+        };
+
+        mockMvc.perform(post("/user")
+        		.content(new byte[0]) //Contenido vacio
+                .content(this.json(payload))
+                .contentType(JSONContentType))
+                .andExpect(status().isNotFound());
+    }
+    
+    @Test
+    /**
+     * Usuario con login y kind incorrecto
+     * @throws Exception
+     */
+    public void testNotFoundLoginAndKind() throws Exception {
+        Map<String, String> payload = new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+
+			{
+                put("login", "11111111H");
+                put("password", "1234");
+                put("kind", "KindNotValid");
+            }
+        };
+
+        mockMvc.perform(post("/user")
+        		.content(new byte[0]) //Contenido vacio
+                .content(this.json(payload))
+                .contentType(JSONContentType))
+                .andExpect(status().isNotFound());
+    }
+    
+    @Test
+    /**
+     * Usuario con password y kind incorrecto
+     * @throws Exception
+     */
+    public void testNotFoundPasswordAndKind() throws Exception {
+        Map<String, String> payload = new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+
+			{
+                put("login", "31668313G");
+                put("password", "1234abcde");
+                put("kind", "KindNotValid");
+            }
+        };
+
+        mockMvc.perform(post("/user")
+        		.content(new byte[0]) //Contenido vacio
+                .content(this.json(payload))
+                .contentType(JSONContentType))
+                .andExpect(status().isNotFound());
+    }
+    
+    @Test
+    /**
+     * Comprueba que el usuario se obtiene correctamente en formato XML
+     * @throws Exception
+     */
     public void getUserXML() throws Exception {
         Map<String, String> payload = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 
 			{
-                put("login", "juan");
-                put("password", "1234");
+				put("login", "31668313G");
+				put("password", "1234");
+				put("kind", "Person");
             }
         };
 
-        Agent c = citizenDAO.getAgent("juan", "1234");
+        Agent agent = agentDAO.getAgent("juan", "1234", "Person");
         mockMvc.perform(post("/user")
                 .content(this.json(payload))
                 .contentType(JSONContentType)
                 .accept(MediaType.APPLICATION_XML))
                 .andExpect(status().isOk())
-                .andExpect(xpath("//email").string(c.getEmail())
+                .andExpect(xpath("//email").string(agent.getEmail())
                 );
     }
 
