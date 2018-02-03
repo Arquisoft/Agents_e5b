@@ -3,7 +3,7 @@ DROP TABLE agent IF EXISTS;
 
 CREATE TABLE agent (
   id BIGINT PRIMARY KEY,
-  identificador VARCHAR(50),--nombre de usuario y único
+  identificador VARCHAR(50) UNIQUE,--nombre de usuario y único
   contrasena VARCHAR(30),
   nombre VARCHAR(50),
   email VARCHAR(50),
