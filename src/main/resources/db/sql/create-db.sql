@@ -9,7 +9,7 @@ CREATE TABLE agent (
   email VARCHAR(50) NOT NULL,
   localizacion VARCHAR(50),
   tipo VARCHAR(50) NOT NULL,
-  tipoCodigo INT NOT NULL
+  --tipoCodigo INT NOT NULL
 );
 
 --DROP TABLE citizen IF EXISTS;
