@@ -3,13 +3,13 @@ DROP TABLE agent IF EXISTS;
 
 CREATE TABLE agent (
   id BIGINT PRIMARY KEY,
-  identificador VARCHAR(50) UNIQUE,--nombre de usuario y único
-  contrasena VARCHAR(30),
-  nombre VARCHAR(50),
-  email VARCHAR(50),
+  identificador VARCHAR(50) UNIQUE NOT NULL,--nombre de usuario y único
+  contrasena VARCHAR(30) NOT NULL,
+  nombre VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL,
   localizacion VARCHAR(50),
-  tipo VARCHAR(50),
-  tipoCodigo INT
+  tipo VARCHAR(50) NOT NULL,
+  tipoCodigo INT NOT NULL
 );
 
 --DROP TABLE citizen IF EXISTS;
