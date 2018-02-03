@@ -1,44 +1,33 @@
 package uo.asw.agents.util;
 
-import java.util.Date;
-
 public class AgentMin {
-
-	private String firstName;
-	private String lastName;
-	private int edad;
+	
 	private Long id;
+	private String name;
+	private int tipoCodigo;
 	private String email;
 	
-	
-	
-	public AgentMin(String firstName, String lastName, Date fechaNacimiento, Long id,
+	public AgentMin(String name, int tipoCodigo, Long id,
 			String email) {
 		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.edad = DateUtil.getYears(fechaNacimiento);
+		this.name = name;
+		this.tipoCodigo = tipoCodigo;
 		this.id = id;
 		this.email = email;
 	}
 	
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getLastName() {
-		return lastName;
+
+	public int getTipoCodigo() {
+		return tipoCodigo;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public int getEdad() {
-		return edad;
-	}
-	public void setEdad(int edad) {
-		this.edad = edad;
+	public void setTipoCodigo(int tipoCodigo) {
+		this.tipoCodigo = tipoCodigo;
 	}
 	public Long getId() {
 		return id;
@@ -56,8 +45,8 @@ public class AgentMin {
 
 	@Override
 	public String toString() {
-		return "CitizenMin [firstName=" + firstName + ", lastName=" + lastName
-				+ ", edad=" + edad + ", id=" + id + ", email=" + email + "]";
+		return "AgentMin [name=" + name
+				+ ", tipoCodigo=" + tipoCodigo + ", id=" + id + ", email=" + email + "]";
 	}
 	
 	

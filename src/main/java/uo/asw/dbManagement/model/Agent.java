@@ -6,78 +6,72 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.util.Date;
-
 @XmlRootElement
 @Entity
-@Table(name = "citizen")
+@Table(name = "agent")
 public class Agent {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	
+	@NotNull
+	@Column(name = "identificador", unique=true)
+	private String identificador;
+	
 	@NotNull
 	@Column(name = "contrasena")
 	private String contraseña;
-	@NotNull
-	private String nombreUsuario;
-	@NotNull
-	@Column(unique = true)
-	private String dni;
+	
 	@NotNull
 	private String nombre;
-	@NotNull
-	private String apellidos;
-	@NotNull
-	@Temporal(TemporalType.DATE)
-	private Date fechaNacimiento;
+	
 	@NotNull
 	private String email;
+	
+	private String localizacion;
+	
 	@NotNull
-	private String direccionPostal;
+	private String tipo;
+	
 	@NotNull
-	private String nacionalidad;
+	private int tipoCodigo;
 	
 	public Agent(){}
 	
 	
 
-	public Agent(String contraseña, String nombreUsuario, String dni,
-			String nombre, String apellidos, Date fechaNacimiento,
-			String email, String direccionPostal, String nacionalidad) {
+	public Agent(String nombreUsuario, String contraseña,
+			String nombre, String email, String localizacion, 
+			String tipo, int tipoCodigo) {
 		super();
+		this.identificador = nombreUsuario;
 		this.contraseña = contraseña;
-		this.nombreUsuario = nombreUsuario;
-		this.dni = dni;
 		this.nombre = nombre;
-		this.apellidos = apellidos;
-		this.fechaNacimiento = fechaNacimiento;
 		this.email = email;
-		this.direccionPostal = direccionPostal;
-		this.nacionalidad = nacionalidad;
+		this.localizacion = localizacion;
+		this.tipo = tipo;
+		this.tipoCodigo=tipoCodigo;
 	}
 
 
+	public String getNombreUsuario() {
+		return identificador;
+	}
 
+	public void setNombreUsuario(String nombreUsuario) {
+		this.identificador = nombreUsuario;
+	}
+	
 	public String getContraseña() {
 		return contraseña;
 	}
 
 	public void setContraseña(String contraseña) {
 		this.contraseña = contraseña;
-	}
-
-	public String getNombreUsuario() {
-		return nombreUsuario;
-	}
-
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
 	}
 
 	public String getNombre() {
@@ -88,22 +82,6 @@ public class Agent {
 		this.nombre = nombre;
 	}
 
-	public String getApellidos() {
-		return apellidos;
-	}
-
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
-
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
-	}
-
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -111,25 +89,29 @@ public class Agent {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getDireccionPostal() {
-		return direccionPostal;
+	
+	public String getLocalizacion(){
+		return localizacion;
 	}
-
-	public void setDireccionPostal(String direccionPostal) {
-		this.direccionPostal = direccionPostal;
+	
+	public void setLocalizacion(String localizacion){
+		this.localizacion=localizacion;
 	}
-
-	public String getNacionalidad() {
-		return nacionalidad;
+	
+	public String getTipo(){
+		return tipo;
 	}
-
-	public void setNacionalidad(String nacionalidad) {
-		this.nacionalidad = nacionalidad;
+	
+	public void setTipo(String tipo){
+		this.tipo=tipo;
 	}
-
-	public String getDni() {
-		return dni;
+	
+	public int getTipoCodigo(){
+		return tipoCodigo;
+	}
+	
+	public void setTipoCodigo(int tipoCodigo){
+		this.tipoCodigo=tipoCodigo;
 	}
 	
 	public Long getId(){
@@ -137,12 +119,11 @@ public class Agent {
 	}
 	
 	
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((dni == null) ? 0 : dni.hashCode());
+		result = prime * result + ((identificador == null) ? 0 : identificador.hashCode());
 		return result;
 	}
 
@@ -155,21 +136,25 @@ public class Agent {
 		if (getClass() != obj.getClass())
 			return false;
 		Agent other = (Agent) obj;
-		if (dni == null) {
-			if (other.dni != null)
+		if (identificador == null) {
+			if (other.identificador != null)
 				return false;
-		} else if (!dni.equals(other.dni))
+		} else if (!identificador.equals(other.identificador))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Citizen [contraseña=" + contraseña + ", nombreUsuario="
-				+ nombreUsuario + ", dni=" + dni + ", nombre=" + nombre
-				+ ", apellidos=" + apellidos + ", fechaNacimiento="
-				+ fechaNacimiento + ", email=" + email + ", direccionPostal="
-				+ direccionPostal + ", nacionalidad=" + nacionalidad + "]";
+		return "Agent ["
+				+ "nombreUsuario=" + identificador + ", "
+				+ "contraseña=" + contraseña + ", "
+				+ "nombre=" + nombre + ", "
+				+ "email=" + email + ", "
+				+ "localizacion=" + localizacion + ", "
+				+ "tipo=" + tipo + ", "
+				+ "tipoCodigo=" + tipoCodigo + "]";
+				
 	}
 	
 	

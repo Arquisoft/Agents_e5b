@@ -52,7 +52,7 @@ public class UtilTest {
 	
     @Before
     public void setUp() throws Exception {
-    	citizenMin = new AgentMin("nombre", "apellido", new Date(), (long) 1, "usuario@gmail.com");
+    	citizenMin = new AgentMin("nombre", 1, (long) 1, "usuario@gmail.com");
     }
 
 	@Test
@@ -61,21 +61,21 @@ public class UtilTest {
 		Long id = (long) 2;
 		String nombre = "fernando";
 		String apellidos = "sanchez";
-		Date fechaNacimiento = new Date();
-		int edad = DateUtil.getYears(fechaNacimiento);
+		//Date fechaNacimiento = new Date();
+		//int edad = DateUtil.getYears(fechaNacimiento);
+		int tipoCodigo=1;
 		String email = "fernando@gmail.com";
 
 		citizenMin.setId(id);
-		citizenMin.setFirstName(nombre);
-		citizenMin.setLastName(apellidos);
-		citizenMin.setEdad(edad);
+		citizenMin.setName(nombre + apellidos);
+		citizenMin.setTipoCodigo(tipoCodigo);
 		citizenMin.setEmail(email);
 
 	
 		assertEquals(id, citizenMin.getId());
-		assertEquals(nombre, citizenMin.getFirstName());
-		assertEquals(apellidos, citizenMin.getLastName());
-		assertEquals(edad, citizenMin.getEdad());
+		assertEquals(nombre+apellidos, citizenMin.getName());
+		//assertEquals(apellidos, citizenMin.getLastName());
+		//assertEquals(edad, citizenMin.getEdad());
 		assertEquals(email, citizenMin.getEmail());
 		
 	}

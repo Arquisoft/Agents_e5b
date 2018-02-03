@@ -20,7 +20,7 @@ public class AgentsServiceImpl implements AgentsService {
     public AgentMin getAgentInfo(String login, String password) {//TODO - Renombrar a getAgentInfo
        Agent c = citizenDAO.getAgent(login, password);
        if(c != null){
-    	   return new AgentMin(c.getNombre(), c.getApellidos(), c.getFechaNacimiento(), c.getId(), c.getEmail());
+    	   return new AgentMin(c.getNombre(), c.getTipoCodigo(), c.getId(), c.getEmail());
        }
        return null;
     }
