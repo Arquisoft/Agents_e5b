@@ -1,3 +1,3 @@
-INSERT INTO citizen VALUES (1, '1234', 'juan', '526395L', 'Juan', 'Perez','1990-2-16', 'juan@gmail.com', 'Oviedo', 'Español' );
-INSERT INTO citizen VALUES (2, '1234', 'pedro', '554395K', 'Pedro', 'Garcia','1991-08-22', 'pedro@gmail.com', 'Oviedo', 'Español' );
-INSERT INTO citizen VALUES (3, '1234', 'raul', '525695K', 'Raul', 'Ruiz','1992-08-22', 'raul@gmail.com', 'Oviedo', 'Español' );
+INSERT INTO agent VALUES (1, '526395P' , '1234' , 'Juan' , 'juan@gmail.com' , '' , 'Person', 1);
+INSERT INTO agent VALUES (2, '554395E' , '1234' , 'Entidad1' , 'entidad1@gmail.com' , '' , 'Entity', 2);
+INSERT INTO agent VALUES (3, '525695S' , '1234' , 'Sensor1' , 'raul@gmail.com' , '' , 'Sensor',3);
