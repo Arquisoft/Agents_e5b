@@ -6,13 +6,13 @@ public class AgentMin {
 	
 	private Long id;
 	private String name;
-	private int tipoCodigo;
+	private String tipo;
 	private String email;
 	
-	public AgentMin(Long id, String name, int tipoCodigo,
+	public AgentMin(Long id, String name, String tipo,
 			String email) {
 		this.name = name;
-		this.tipoCodigo = tipoCodigo;
+		this.tipo = tipo;
 		this.id = id;
 		this.email = email;
 	}
@@ -24,11 +24,11 @@ public class AgentMin {
 		this.name = name;
 	}
 
-	public int getTipoCodigo() {
-		return tipoCodigo;
+	public String getTipo() {
+		return tipo;
 	}
-	public void setTipoCodigo(int tipoCodigo) {
-		this.tipoCodigo = tipoCodigo;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	public Long getId() {
 		return id;
@@ -47,7 +47,7 @@ public class AgentMin {
 	@Override
 	public String toString() {
 		return "AgentMin [name=" + name
-				+ ", tipoCodigo=" + tipoCodigo + ", id=" + id + ", email=" + email + "]";
+				+ ", tipo=" + tipo + ", id=" + id + ", email=" + email + "]";
 	}
 	
 	

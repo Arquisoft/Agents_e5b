@@ -14,19 +14,19 @@ import uo.asw.dbManagement.model.Agent;
 @Service
 public class AgentsServiceImpl implements AgentsService {
     @Autowired
-    private AgentDAO citizenDAO;
+    private AgentDAO agentDAO;
 
     @Override
     public AgentMin getAgentInfo(String login, String password) {
-       Agent c = citizenDAO.getAgent(login, password);
+       Agent c = agentDAO.getAgent(login, password);
        if(c != null){
-    	   return new AgentMin(c.getId(), c.getNombre(), c.getTipoCodigo(), c.getEmail());
+    	   return new AgentMin(c.getId(), c.getNombre(), c.getTipo(), c.getEmail());
        }
        return null;
     }
 
     @Override
     public Agent changeInfo(Agent updatedData) {
-        return citizenDAO.updateInfo(updatedData);
+        return agentDAO.updateInfo(updatedData);
     }
 }
