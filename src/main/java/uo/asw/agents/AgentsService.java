@@ -9,6 +9,7 @@ import uo.asw.dbManagement.model.Agent;
  * @since 0.0.1
  */
 public interface AgentsService {
-    AgentMin getAgentInfo(String login, String password);
+   // AgentMin getAgentInfo(String login, String password);
     Agent changeInfo(Agent updatedData);
+	AgentMin getAgentInfo(String login, String password, String kind);
 }
