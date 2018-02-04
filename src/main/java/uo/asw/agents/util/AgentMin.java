@@ -8,13 +8,15 @@ public class AgentMin {
 	private String name;
 	private String tipo;
 	private String email;
+	private int tipoCodigo;
 	
 	public AgentMin(Long id, String name, String tipo,
-			String email) {
+			String email,int tipoCod) {
 		this.name = name;
 		this.tipo = tipo;
 		this.id = id;
 		this.email = email;
+		this.tipoCodigo=tipoCod;
 	}
 	
 	public String getName() {
@@ -48,6 +50,14 @@ public class AgentMin {
 	public String toString() {
 		return "AgentMin [name=" + name
 				+ ", tipo=" + tipo + ", id=" + id + ", email=" + email + "]";
+	}
+
+	public int getTipoCodigo() {
+		return tipoCodigo;
+	}
+
+	public void setTipoCodigo(int tipoCodigo) {
+		this.tipoCodigo = tipoCodigo;
 	}
 	
 	
