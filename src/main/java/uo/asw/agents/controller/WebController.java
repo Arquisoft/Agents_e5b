@@ -68,14 +68,20 @@ public class WebController {
 	 * @return view si exito, error si fracaso
 	 */
 	@RequestMapping(value = "/info", method = RequestMethod.POST)
-	public String showInfo(HttpSession session, @RequestParam String user, @RequestParam String password, Model model) {
-
+	
+	//MFA - Actualizamos el showInfo con las nuevas necesidades
+	//public String showInfo(HttpSession session, @RequestParam String user, @RequestParam String password, Model model) {
+	public String showInfo(HttpSession session, @RequestParam String login, @RequestParam String password, @RequestParam String kind, Model model) {
 		Agent c = null;
 
-		if (user != null && password != null) {
-			c = cc.getAgent(user, password);
+		if (login != null && password != null) {
+			//MFA- Actualizamos el getAgent con kind
+			//c = cc.getAgent(user, password);
+			c = cc.getAgent(login, password, kind);
 			if (c != null) {
-				session.setAttribute("citizen", c);
+				//MFA - Cambiamos la session de citizen a agent
+				//session.setAttribute("citizen", c);
+				session.setAttribute("agent",c);
 				model.addAttribute("resultado", "Bienvenid@ " + c.getNombre());
 				return "view";
 			}
@@ -83,6 +89,10 @@ public class WebController {
 		return "error";
 
 	}
+	
+	
+	
+	
 
 	/**
 	 * Acceso a la página que modifica los datos del usuario
