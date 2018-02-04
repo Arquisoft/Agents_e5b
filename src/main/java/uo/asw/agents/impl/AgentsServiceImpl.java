@@ -17,10 +17,10 @@ public class AgentsServiceImpl implements AgentsService {
     private AgentDAO agentDAO;
 
     @Override
-    public AgentMin getAgentInfo(String login, String password) {
-       Agent c = agentDAO.getAgent(login, password);
+    public AgentMin getAgentInfo(String login, String password,String kind) {
+       Agent c = agentDAO.getAgent(login, password,kind);
        if(c != null){
-    	   return new AgentMin(c.getId(), c.getNombre(), c.getTipo(), c.getEmail());
+    	   return new AgentMin(c.getId(), c.getNombre(), c.getTipo(), c.getEmail(),c.getTipoCodigo());
        }
        return null;
     }
