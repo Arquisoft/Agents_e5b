@@ -121,7 +121,9 @@ public class WebController {
 	@RequestMapping(value = "/changeInfo", method = RequestMethod.POST)
 	public String changePassword(HttpSession session, @RequestParam String password, @RequestParam String newPassword,
 			Model model) {
-		Agent c = (Agent) session.getAttribute("citizen");
+		//MFA - Actualizacion session
+		//Agent c = (Agent) session.getAttribute("citizen");
+		Agent c = (Agent) session.getAttribute("agent");
 		if (c != null) {
 			if (c.getContraseña().equals(password) && !newPassword.isEmpty()) {
 				c.setContraseña(newPassword);
@@ -147,7 +149,9 @@ public class WebController {
 	 */
 	@RequestMapping(value = "/changeEmail", method = RequestMethod.POST)
 	public String changeEmail(HttpSession session, @RequestParam String email, Model model){
-		Agent c = (Agent) session.getAttribute("citizen");
+		//MFA - Actualizacion session
+		//Agent c = (Agent) session.getAttribute("citizen");
+		Agent c = (Agent) session.getAttribute("agent");
 		if(c != null){
 			if(!email.isEmpty() && Check.validateEmail(email)){
 				c.setEmail(email);
