@@ -74,7 +74,7 @@ public class WebController {
 	public String showInfo(HttpSession session, @RequestParam String login, @RequestParam String password, @RequestParam String kind, Model model) {
 		Agent c = null;
 
-		if (login != null && password != null) {
+		if (login != null && password != null && kind != null) {
 			//MFA- Actualizamos el getAgent con kind
 			//c = cc.getAgent(user, password);
 			c = cc.getAgent(login, password, kind);
