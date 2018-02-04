@@ -11,12 +11,18 @@
  	<hr/><br/>
  	<table align="center">
     	<tr> 
-    		<td align="right">Usuario: </td>
+    		<td align="right">Login: </td>
 	    	<td><input type="text" name="user" align="left" size="15" required = "required" placeholder="Login"/></td>
       	</tr>
       	<tr>
-    	    <td align="right">Contrasena: </td>
+    	    <td align="right">Password: </td>
       		<td><input type="password" name="password" align="left" size="15" required="required" placeholder="Password"/></td>
+      	</tr>
+        
+        <!-- MFA Añadimos kind -->
+        <tr>
+    	    <td align="right">Kind: </td>
+      		<td><input type="kind" name="kind" align="left" size="15" required="required" placeholder="Kind"/></td>
       	</tr>
       	<tr>
     	    <td><input id="btnEnviar" type="submit" value="Enviar"/></td>
