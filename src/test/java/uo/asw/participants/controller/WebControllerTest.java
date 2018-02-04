@@ -34,7 +34,9 @@ public class WebControllerTest {
     private MockMvc mockMvc;
     
     @Autowired
-    private AgentDAO citizenDAO;
+    //MFA
+    //private AgentDAO citizenDAO;
+    private AgentDAO agentDAO;
      
     @Before
     public void init() {
@@ -99,13 +101,15 @@ public class WebControllerTest {
    @Test
    public void changePasswordTest1() throws Exception {
    	
-	   Agent c = citizenDAO.getAgent("juan", "1234");
+	   //MFA
+	   //Agent c = citizenDAO.getAgent("juan", "1234");
+	   Agent c = agentDAO.getAgent("31668313G", "1234", "Person");
 
 	   //Cambio de contraseña
        mockMvc.perform(post("/changeInfo")
     	.param("password", "1234")
 		.param("newPassword", "new")
-		.sessionAttr("citizen", c))
+		.sessionAttr("agent", c))
         .andExpect(status().isOk())
     	.andExpect(view().name("view"));
 
@@ -113,7 +117,7 @@ public class WebControllerTest {
        mockMvc.perform(post("/changeInfo")
     	.param("password", "new")
 		.param("newPassword", "1234")
-		.sessionAttr("citizen", c))
+		.sessionAttr("agent", c))
         .andExpect(status().isOk())
      	.andExpect(view().name("view"));
        
@@ -123,12 +127,14 @@ public class WebControllerTest {
    //Contraseña incorrecta
    public void changePasswordTest2() throws Exception {
    	
-	   Agent c = citizenDAO.getAgent("juan", "1234");
+	   //MFA
+	   //Agent c = citizenDAO.getAgent("juan", "1234");
+	   Agent c = agentDAO.getAgent("31668313G", "1234", "Person");
 
        mockMvc.perform(post("/changeInfo")
     	.param("password", "password")
 		.param("newPassword", "new")
-		.sessionAttr("citizen", c))
+		.sessionAttr("agent", c))
     	.andExpect(view().name("errorContrasena"));
        
    }
@@ -136,12 +142,14 @@ public class WebControllerTest {
    @Test
    public void changeEmailTest1() throws Exception {
    	
-	   Agent c = citizenDAO.getAgent("juan", "1234");
+	   //MFA
+	   //Agent c = citizenDAO.getAgent("juan", "1234");
+	   Agent c = agentDAO.getAgent("31668313G", "1234", "Person");
 
 	   //Cambio de email
        mockMvc.perform(post("/changeEmail")
     	.param("email", "juanNuevo@gmail.com")
-		.sessionAttr("citizen", c))
+		.sessionAttr("agent", c))
         .andExpect(status().isOk())
     	.andExpect(view().name("view"));
 
@@ -150,7 +158,7 @@ public class WebControllerTest {
 	   //Cambio de email de nuevo por el original
        mockMvc.perform(post("/changeEmail")
     	.param("email", "juan@gmail.com")
-		.sessionAttr("citizen", c))
+		.sessionAttr("agent", c))
         .andExpect(status().isOk())
      	.andExpect(view().name("view"));
        
