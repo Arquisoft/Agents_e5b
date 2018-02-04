@@ -30,14 +30,15 @@ public class AgentDAODummy implements AgentDAO { //TODO - Si se quita lo de dumm
     public Agent getAgent(String login, String password, String kind) {//TODO- Actualizar para que tenga en cuenta el kind
     	@SuppressWarnings("unchecked")
     	//TODO-No hace EntityManagerFactory.createEntityManager() !! ???
-		List<Agent> citizen =  entityManager.createQuery(//TODO - Renombrar citizen a agent
+		List<Agent> agent =  entityManager.createQuery(//TODO - Renombrar citizen a agent
     	        //"from Citizen where nombreUsuario = ?1 and contraseña = ?2"
-				"from Agent where nombreUsuario = ?1 and contraseña = ?2") //TODO - Consulta sin select y sin hacer Agent a ???
-    	        .setParameter(1, login).setParameter(2, password)
+				"from Agent where identificador = ?1 and contraseña = ?2"
+				+ " and tipo = ?3") //TODO - Consulta sin select y sin hacer Agent a ???
+    	        .setParameter(1, login).setParameter(2, password).setParameter(3, kind)
     	        .getResultList();
-    	if(citizen.isEmpty())
+    	if(agent.isEmpty())
     		return null;
-    	return citizen.get(0);
+    	return agent.get(0);
        // return dummyAgent;
     }
 
