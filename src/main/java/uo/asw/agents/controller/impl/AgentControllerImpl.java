@@ -31,10 +31,11 @@ public class AgentControllerImpl implements AgentController {
 		//	return new ResponseEntity<CitizenMin>(HttpStatus.BAD_REQUEST);
 		//}
 
-		String login, password;
+		String login, password,kind;
 		login = (String) payload.get("login");
 		password = (String) payload.get("password");
-		AgentMin c = agentsService.getAgentInfo(login, password);
+		kind = (String) payload.get("kind");
+		AgentMin c = agentsService.getAgentInfo(login, password,kind);
 		if(c == null){
 			return new ResponseEntity<AgentMin>(HttpStatus.NOT_FOUND);
 		}
