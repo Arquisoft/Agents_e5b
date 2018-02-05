@@ -39,9 +39,9 @@ public class Agent {
 	
 	
 	
-	//Entiendo que esto es kindCode 
-	@NotNull
-	private int tipoCodigo;
+//	//Entiendo que esto es kindCode 
+//	@NotNull
+//	private int tipoCodigo;
 	
 	public Agent(){}
 	
@@ -109,13 +109,13 @@ public class Agent {
 		this.tipo=tipo;
 	}
 	
-	public int getTipoCodigo(){
-		return tipoCodigo;
-	}
-	
-	public void setTipoCodigo(int tipoCodigo){
-		this.tipoCodigo=tipoCodigo;
-	}
+//	public int getTipoCodigo(){
+//		return tipoCodigo;
+//	}
+//	
+//	public void setTipoCodigo(int tipoCodigo){
+//		this.tipoCodigo=tipoCodigo;
+//	}
 	
 	public Long getId(){
 		return id;

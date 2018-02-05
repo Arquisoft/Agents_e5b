@@ -52,7 +52,7 @@ public class UtilTest {
 	
     @Before
     public void setUp() throws Exception {
-    	agentMin = new AgentMin((long) 1, "nombre","agente","usuario@gmail.com",1);
+    	agentMin = new AgentMin((long) 1, "nombre","agente","usuario@gmail.com");
     }
 
 	@Test
@@ -68,7 +68,6 @@ public class UtilTest {
 
 		agentMin.setId(id);
 		agentMin.setName(nombre + apellidos);
-		agentMin.setTipoCodigo(tipoCodigo);
 		agentMin.setEmail(email);
 
 	

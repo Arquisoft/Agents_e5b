@@ -32,8 +32,7 @@ public class AgentDAODummy implements AgentDAO { //TODO - Si se quita lo de dumm
     	//TODO-No hace EntityManagerFactory.createEntityManager() !! ???
 		List<Agent> agent =  entityManager.createQuery(//TODO - Renombrar citizen a agent
     	        //"from Citizen where nombreUsuario = ?1 and contraseña = ?2"
-				"from Agent where identificador = ?1 and contraseña = ?2"
-				+ " and tipo = ?3") //TODO - Consulta sin select y sin hacer Agent a ???
+				"from Agent where identificador = ?1 and contraseña = ?2 and tipo = ?3") //TODO - Consulta sin select y sin hacer Agent a ???
     	        .setParameter(1, login).setParameter(2, password).setParameter(3, kind)
     	        .getResultList();
     	if(agent.isEmpty())
