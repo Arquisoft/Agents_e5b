@@ -48,8 +48,9 @@ public class WebControllerTest {
     public void showInfoTest1() throws Exception {
 
       mockMvc.perform(post("/info")
-		.param("user", "juan")
-		.param("password", "1234"))
+		.param("identificador", "31668313G")
+		.param("contrasena", "1234")
+		.param("tipo","Person"))
       	.andExpect(status().isOk())
       	.andExpect(model().attributeExists("resultado"))
       	.andExpect(view().name("view"));
@@ -62,8 +63,9 @@ public class WebControllerTest {
     public void showInfoTest2() throws Exception {
     	
         mockMvc.perform(post("/info")
-    	.param("user", "usuario")
-		.param("password", "1234"))
+    	.param("login", "usuario")
+		.param("password", "1234")
+		.param("kind", "Person"))
      	.andExpect(view().name("error"));
 
     }
@@ -73,19 +75,21 @@ public class WebControllerTest {
     public void showInfoTest3() throws Exception {
 
        	mockMvc.perform(post("/info")
-    	.param("user", "juan")
-		.param("password", "password"))
+       	.param("identificador", "31668313G")
+       	.param("contrasena", "1234")
+       	.param("tipo","Person"))
      	.andExpect(view().name("error"));
    
     }
     
     @Test
-    //usuario y contraseña vacios
+    //login, password y kind vacios
     public void showInfoTest4() throws Exception {
 
        	mockMvc.perform(post("/info")
-    	.param("user", "")
-		.param("password", ""))
+       	.param("login", "")
+       	.param("password", "")
+       	.param("kind",""))
         .andExpect(view().name("error"));
    
     }
@@ -107,7 +111,7 @@ public class WebControllerTest {
 
 	   //Cambio de contraseña
        mockMvc.perform(post("/changeInfo")
-    	.param("password", "1234")
+    	.param("contrasena", "1234")
 		.param("newPassword", "new")
 		.sessionAttr("agent", c))
         .andExpect(status().isOk())
@@ -115,7 +119,7 @@ public class WebControllerTest {
 
 	   //Cambio de contraseña de nuevo por la original
        mockMvc.perform(post("/changeInfo")
-    	.param("password", "new")
+    	.param("contrasena", "new")
 		.param("newPassword", "1234")
 		.sessionAttr("agent", c))
         .andExpect(status().isOk())
