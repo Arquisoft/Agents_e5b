@@ -63,7 +63,8 @@ public class UtilTest {
 		String apellidos = "sanchez";
 		//Date fechaNacimiento = new Date();
 		//int edad = DateUtil.getYears(fechaNacimiento);
-		int tipoCodigo=1;
+		
+		//int tipoCodigo=1;
 		String email = "fernando@gmail.com";
 
 		agentMin.setId(id);
