@@ -250,8 +250,14 @@ public class CitizenControllerTest { //TODO - Renombrar a AgentControllerTest, p
 				put("kind", "Person");
             }
         };
-
-        Agent agent = agentDAO.getAgent("juan", "1234", "Person");
+        
+ 
+        //Agent agent = agentDAO.getAgent("juan", "1234", "Person");
+        /*
+         * El nombre de usuario es el identificador
+         */
+        Agent agent=agentDAO.getAgent("31668313G", "1234", "Person");
+        
         mockMvc.perform(post("/user")
                 .content(this.json(payload))
                 .contentType(JSONContentType)
@@ -259,6 +265,7 @@ public class CitizenControllerTest { //TODO - Renombrar a AgentControllerTest, p
                 .andExpect(status().isOk())
                 .andExpect(xpath("//email").string(agent.getEmail())
                 );
+    
     }
 
     /**
