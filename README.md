@@ -28,15 +28,16 @@ Skeleton of participants module
 # Funcionamiento:
 ## Interfaz HTML
 1. Escribir en el navegador: http://localhost:8080/
-2. Proporcionar los datos de login para los usuarios disponibles:
- * Login: juan, pedro, raul
- * Password: 1234
-3. Aparecerá la pantalla que muestra los datos del usuario
- * Se puede modificar el email (se comprueba si el email es valido)
+2. Proporcionar los datos de login para los 3 agentes disponibles (uno de cada tipo):
+ * Login: 31668313G  Password: 1234  Kind: Person
+ * Login: A58818501  Password: 1234  Kind: Entity
+ * Login: 525695S    Password: 1234  Kind: Sensor
+3. Aparecerá la pantalla que muestra los datos del agente
+ * Se puede modificar el email directamente (comprobándose si el email es válido)
  * Se puede ir a la pantalla de cambio de contraseña
 4. Cambio de contraseña:
  * Escribir la contreseña antigua
- * Escribir la nueva contraseña
+ * Escribir la contraseña nueva
 
 ## Servicio REST
    El punto de entrada se encuentra en http://localhost:8080/user.
@@ -44,7 +45,7 @@ Skeleton of participants module
    Acepta peticiones POST en formato JSON con el contenido:
    ``{"login": usuario, "password": password, "kind": tipo de agente}``
    
-   Devuelve la informacion del usuario si las credenciales en formato 
+   Devuelve la informacion del agente si las credenciales en formato 
    JSON o XML segun se indique en la cabecera de la petición.
    
    Si los datos no son correctos se devuelve un error HTTP 404.
@@ -54,7 +55,7 @@ Skeleton of participants module
    ```json
    {
      "name": Nombre,
-     "location":  Coordenadas (opcional),
+     "location": Coordenadas (opcional),
      "email": Email,
      "id": identificador,
      "kind": tipo de usuario,
