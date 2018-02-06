@@ -44,8 +44,6 @@ public class Agent {
 //	private int tipoCodigo;
 	
 	public Agent(){}
-	
-	
 
 	public Agent(String nombreUsuario, String contraseña,
 			String nombre, String email, String localizacion, 

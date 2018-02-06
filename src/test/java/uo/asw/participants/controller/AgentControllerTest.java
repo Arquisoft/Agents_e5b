@@ -88,15 +88,6 @@ public class AgentControllerTest {
                 put("kind", "Person");
             }
         };
-
-//        Agent agent = agentDAO.getAgent("31668313G", "1234", "Person");
-//        mockMvc.perform(post("/user")
-//                .content(this.json(payload))
-//                .contentType(JSONContentType))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$['email']", is(agent.getEmail()))
-//
-//                );
         
         //Obtenemos el agente de la BD
         Agent agent = agentDAO.getAgent("31668313G", "1234", "Person");
@@ -276,10 +267,88 @@ public class AgentControllerTest {
         //Obtenemos el agente de la BD
         Agent agent = agentDAO.getAgent("31668313G", "1234", "Person");
         
+        //Realizamos la petición post y comprobamos que los datos del XML de vuelta
+        //coinciden con los del agente obtenido de la BD
+        
+        //Dado el kind del agente, sacamos su kindCode
+        int kindCode = ExcelKindsReader.getKindCodeByKind(agent.getTipo());
+        String localizacion = agent.getLocalizacion() != null? agent.getLocalizacion() : "";
+        
+        mockMvc.perform(post("/user")
+                .content(this.json(payload))
+                .contentType(JSONContentType)
+                .accept(MediaType.APPLICATION_XML))
+                .andExpect(status().isOk()) 
+                .andExpect(xpath("//name").string(agent.getNombre()))
+                .andExpect(xpath("//location").string(localizacion))
+                .andExpect(xpath("//email").string(agent.getEmail()))
+                .andExpect(xpath("//id").string(agent.getIdentificador()))
+                .andExpect(xpath("//kind").string(agent.getTipo()))
+                .andExpect(xpath("//kindCode").string(String.valueOf(kindCode)));
+    }
+    
+    @Test
+    /**
+     * Comprueba que el usuario se obtiene correctamente en formato JSON
+     * @throws Exception
+     */
+    public void testGetValidSensorJSON() throws Exception {
+    	//Preparamos los parametros de la petición post
+        Map<String, String> payload = new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+
+			{
+                put("login", "525695S");
+                put("password", "1234");
+                put("kind", "Sensor");
+            }
+        };
+        
+        //Obtenemos el agente de la BD
+        Agent agent = agentDAO.getAgent("525695S", "1234", "Sensor");
+        
         //Realizamos la petición post y comprobamos que los datos del JSON de vuelta
         //coinciden con los del agente obtenido de la BD
         
         //Dado el kind del agente, sacamos su kindCode
+        int kindCode = ExcelKindsReader.getKindCodeByKind(agent.getTipo());
+        
+        mockMvc.perform(post("/user")
+                .content(this.json(payload))
+                .contentType(JSONContentType))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$['name']", is(agent.getNombre())))
+                .andExpect(jsonPath("$['location']", is(agent.getLocalizacion())))
+                .andExpect(jsonPath("$['email']", is(agent.getEmail())))
+                .andExpect(jsonPath("$['id']", is(agent.getIdentificador())))
+                .andExpect(jsonPath("$['kind']", is(agent.getTipo())))
+                .andExpect(jsonPath("$['kindCode']", is(kindCode)));
+    }
+    
+    @Test
+    /**
+     * Comprueba que el usuario se obtiene correctamente en formato JSON
+     * @throws Exception
+     */
+    public void testGetValidSensorXML() throws Exception {
+    	//Preparamos los parametros de la petición post
+        Map<String, String> payload = new HashMap<String, String>() {
+			private static final long serialVersionUID = 1L;
+
+			{
+                put("login", "525695S");
+                put("password", "1234");
+                put("kind", "Sensor");
+            }
+        };
+        
+        //Obtenemos el agente de la BD
+        Agent agent = agentDAO.getAgent("525695S", "1234", "Sensor");
+        
+        //Realizamos la petición post y comprobamos que los datos del XML de vuelta
+        //coinciden con los del agente obtenido de la BD
+        
+      //Dado el kind del agente, sacamos su kindCode
         int kindCode = ExcelKindsReader.getKindCodeByKind(agent.getTipo());
         String localizacion = agent.getLocalizacion() != null? agent.getLocalizacion() : "";
         
