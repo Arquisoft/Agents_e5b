@@ -4,57 +4,68 @@ package uo.asw.agents.util;
 //y en dichos tests se hace una comprobacion sin mucho sentido. Creo que está de relleno.
 public class AgentMin {
 	
-	private Long id;
-	private String name;
-	private String tipo;
-	private String email;
+	public Long id;
+	public String name;
+	public String location;
+	public String email;
+	public String kind;
+	//public String kindCode;
 	
-	public AgentMin(Long id, String name, String tipo,
-			String email) {
-		this.name = name;
-		this.tipo = tipo;
+	public AgentMin(Long id, String name, String location, String email, String kind){//, String kindCode) {
 		this.id = id;
+		this.name = name;
+		this.location = location;
 		this.email = email;
+		this.kind = kind;
+		//this.kindCode = kindCode;
 	}
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getTipo() {
-		return tipo;
+	public String getLocation() {
+		return location;
 	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
 
 	@Override
 	public String toString() {
-		return "AgentMin [name=" + name
-				+ ", tipo=" + tipo + ", id=" + id + ", email=" + email + "]";
+		return "AgentMin [id=" + id + ", name=" + name + ", location=" + location + ", email=" + email + ", kind="
+				+ kind + ", kindCode=" 
+				//+ kindCode 
+				+ "]";
 	}
-
-	
-	
-	
-	
-	
-	
 	
 }
