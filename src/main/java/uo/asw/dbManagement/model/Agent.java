@@ -121,7 +121,14 @@ public class Agent {
 		return id;
 	}
 	
-	
+	public String getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

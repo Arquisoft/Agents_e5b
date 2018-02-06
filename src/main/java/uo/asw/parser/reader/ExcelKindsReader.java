@@ -14,11 +14,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-public class ExcelKindsReader implements AgentsReader {
+public class ExcelKindsReader{
 	
 	//ruta -> src/main/resources/kinds.xlsx
-	@Override
-	public Map<String, Integer> readKinds(String filePath){
+	public static Map<String, Integer> readKinds(String filePath){
 		
 		Map<String, Integer> tipos = null;
 		try{
@@ -61,6 +60,12 @@ public class ExcelKindsReader implements AgentsReader {
 		}
 		
 		return tipos;
+	}
+	
+	public static int getKindCodeByKind(String kind){
+		Map<String, Integer> paresKind_KindCode = readKinds("src/main/resources/kinds.xlsx");
+ 	   	int kindCode = paresKind_KindCode.get(kind);
+ 	   	return kindCode;
 	}
 
 }

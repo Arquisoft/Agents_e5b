@@ -53,13 +53,13 @@ public class UtilTest {
     @Before
     public void setUp() throws Exception {
     	//agentMin = new AgentMin((long) 1, "nombre","agente","usuario@gmail.com");
-    	agentMin = new AgentMin((long) 1, "nombre", null, "usuario@gmail.com", "Agent", 1);
+    	agentMin = new AgentMin("111111H", "nombre", null, "usuario@gmail.com", "Agent", 1);
     }
 
 	@Test
 	public void newAgentMinTest() {//TODO - Revisar este test
 		
-		Long id = (long) 2;
+		String id = "222222J";
 		String nombre = "fernando";
 		String apellidos = "sanchez";
 		//Date fechaNacimiento = new Date();

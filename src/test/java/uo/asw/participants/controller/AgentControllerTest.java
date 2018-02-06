@@ -18,6 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
 import uo.asw.Application;
 import uo.asw.dbManagement.AgentDAO;
 import uo.asw.dbManagement.model.Agent;
+import uo.asw.parser.reader.ExcelKindsReader;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -77,6 +78,7 @@ public class AgentControllerTest {
      * @throws Exception
      */
     public void testGetValidUserJSON() throws Exception {
+    	//Preparamos los parametros de la petición post
         Map<String, String> payload = new HashMap<String, String>() {
 			private static final long serialVersionUID = 1L;
 
@@ -87,14 +89,34 @@ public class AgentControllerTest {
             }
         };
 
+//        Agent agent = agentDAO.getAgent("31668313G", "1234", "Person");
+//        mockMvc.perform(post("/user")
+//                .content(this.json(payload))
+//                .contentType(JSONContentType))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$['email']", is(agent.getEmail()))
+//
+//                );
+        
+        //Obtenemos el agente de la BD
         Agent agent = agentDAO.getAgent("31668313G", "1234", "Person");
+        
+        //Realizamos la petición post y comprobamos que los datos del JSON de vuelta
+        //coinciden con los del agente obtenido de la BD
+        
+        //Dado el kind del agente, sacamos su kindCode
+        int kindCode = ExcelKindsReader.getKindCodeByKind(agent.getTipo());
+        
         mockMvc.perform(post("/user")
                 .content(this.json(payload))
                 .contentType(JSONContentType))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$['email']", is(agent.getEmail()))
-
-                );
+                .andExpect(jsonPath("$['name']", is(agent.getNombre())))
+                //.andExpect(jsonPath("$['location']", is(agent.getLocalizacion())))
+                .andExpect(jsonPath("$['email']", is(agent.getEmail())))
+                .andExpect(jsonPath("$['id']", is(agent.getIdentificador())))
+                .andExpect(jsonPath("$['kind']", is(agent.getTipo())))
+                .andExpect(jsonPath("$['kindCode']", is(kindCode)));
     }
 
     @Test
@@ -264,7 +286,7 @@ public class AgentControllerTest {
                 .accept(MediaType.APPLICATION_XML))
                 .andExpect(status().isOk())
                 .andExpect(xpath("//email").string(agent.getEmail())
-                );
+                );//TODO poner mas exepcts
     
     }
 
