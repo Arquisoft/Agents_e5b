@@ -77,7 +77,7 @@ public class DatabaseConfig {
 	}
 
 	/**
-	 * Decalaración del trasaction manager
+	 * Decalaración del transaction manager
 	 */
 	@Bean
 	public JpaTransactionManager transactionManager() {
