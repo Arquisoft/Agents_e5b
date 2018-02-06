@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import uo.asw.agents.util.Check;
 import uo.asw.dbManagement.AgentDAO;
 import uo.asw.dbManagement.model.Agent;
+import uo.asw.parser.reader.CSVKindsReader;
 
 @Controller
 public class WebController {
@@ -83,8 +84,11 @@ public class WebController {
 			c = cc.getAgent(login, password, kind);//TODO - Mal, no debe llamar a getAgent, sino al servicio web
 			
 			if (c != null) {
-				//session.setAttribute("citizen", c);
+				//TODO - esta mal
+				int kindCode = CSVKindsReader.getKindCodeByKind(c.getTipo());
+				
 				session.setAttribute("agent",c);
+				session.setAttribute("tipoCodigo", kindCode);
 				model.addAttribute("resultado", "Bienvenid@ " + c.getNombre());
 				return "view";
 			}

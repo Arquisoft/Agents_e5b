@@ -8,7 +8,6 @@ import uo.asw.agents.util.AgentMin;
 import uo.asw.dbManagement.AgentDAO;
 import uo.asw.dbManagement.model.Agent;
 import uo.asw.parser.reader.CSVKindsReader;
-import uo.asw.parser.reader.ExcelKindsReader;
 
 /**
  * Created by Irazusta on 15/02/2017.
@@ -23,8 +22,7 @@ public class AgentsServiceImpl implements AgentsService {
        Agent c = agentDAO.getAgent(login, password,kind);
        if(c != null){
     	   //Sacamos el kindCode del csv, usando el kind del Agent
-    	  // int kindCode = ExcelKindsReader.getKindCodeByKind(c.getTipo());
-    	   int kindCode = CSVKindsReader.devolverMap(c.getTipo());
+    	   int kindCode = CSVKindsReader.getKindCodeByKind(c.getTipo());
     	   return new AgentMin(c.getIdentificador(), c.getNombre(), c.getLocalizacion(),c.getEmail(), c.getTipo(), kindCode);
        }
        return null;

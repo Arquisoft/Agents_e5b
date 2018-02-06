@@ -18,7 +18,7 @@ import org.springframework.web.context.WebApplicationContext;
 import uo.asw.Application;
 import uo.asw.dbManagement.AgentDAO;
 import uo.asw.dbManagement.model.Agent;
-import uo.asw.parser.reader.ExcelKindsReader;
+import uo.asw.parser.reader.CSVKindsReader;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -96,7 +96,7 @@ public class AgentControllerTest {
         //coinciden con los del agente obtenido de la BD
         
         //Dado el kind del agente, sacamos su kindCode
-        int kindCode = ExcelKindsReader.getKindCodeByKind(agent.getTipo());
+        int kindCode = CSVKindsReader.getKindCodeByKind(agent.getTipo());
         
         mockMvc.perform(post("/user")
                 .content(this.json(payload))
@@ -271,7 +271,7 @@ public class AgentControllerTest {
         //coinciden con los del agente obtenido de la BD
         
         //Dado el kind del agente, sacamos su kindCode
-        int kindCode = ExcelKindsReader.getKindCodeByKind(agent.getTipo());
+        int kindCode = CSVKindsReader.getKindCodeByKind(agent.getTipo());
         String localizacion = agent.getLocalizacion() != null? agent.getLocalizacion() : "";
         
         mockMvc.perform(post("/user")
@@ -311,7 +311,7 @@ public class AgentControllerTest {
         //coinciden con los del agente obtenido de la BD
         
         //Dado el kind del agente, sacamos su kindCode
-        int kindCode = ExcelKindsReader.getKindCodeByKind(agent.getTipo());
+        int kindCode = CSVKindsReader.getKindCodeByKind(agent.getTipo());
         
         mockMvc.perform(post("/user")
                 .content(this.json(payload))
@@ -349,7 +349,7 @@ public class AgentControllerTest {
         //coinciden con los del agente obtenido de la BD
         
       //Dado el kind del agente, sacamos su kindCode
-        int kindCode = ExcelKindsReader.getKindCodeByKind(agent.getTipo());
+        int kindCode = CSVKindsReader.getKindCodeByKind(agent.getTipo());
         String localizacion = agent.getLocalizacion() != null? agent.getLocalizacion() : "";
         
         mockMvc.perform(post("/user")
