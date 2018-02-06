@@ -112,7 +112,7 @@ public class AgentControllerTest {
                 .contentType(JSONContentType))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$['name']", is(agent.getNombre())))
-                //.andExpect(jsonPath("$['location']", is(agent.getLocalizacion())))
+                .andExpect(jsonPath("$['location']", is(agent.getLocalizacion())))
                 .andExpect(jsonPath("$['email']", is(agent.getEmail())))
                 .andExpect(jsonPath("$['id']", is(agent.getIdentificador())))
                 .andExpect(jsonPath("$['kind']", is(agent.getTipo())))
@@ -273,21 +273,27 @@ public class AgentControllerTest {
             }
         };
         
- 
-        //Agent agent = agentDAO.getAgent("juan", "1234", "Person");
-        /*
-         * El nombre de usuario es el identificador
-         */
-        Agent agent=agentDAO.getAgent("31668313G", "1234", "Person");
+        //Obtenemos el agente de la BD
+        Agent agent = agentDAO.getAgent("31668313G", "1234", "Person");
+        
+        //Realizamos la petición post y comprobamos que los datos del JSON de vuelta
+        //coinciden con los del agente obtenido de la BD
+        
+        //Dado el kind del agente, sacamos su kindCode
+        int kindCode = ExcelKindsReader.getKindCodeByKind(agent.getTipo());
+        String localizacion = agent.getLocalizacion() != null? agent.getLocalizacion() : "";
         
         mockMvc.perform(post("/user")
                 .content(this.json(payload))
                 .contentType(JSONContentType)
                 .accept(MediaType.APPLICATION_XML))
-                .andExpect(status().isOk())
-                .andExpect(xpath("//email").string(agent.getEmail())
-                );//TODO poner mas exepcts
-    
+                .andExpect(status().isOk()) 
+                .andExpect(xpath("//name").string(agent.getNombre()))
+                .andExpect(xpath("//location").string(localizacion))
+                .andExpect(xpath("//email").string(agent.getEmail()))
+                .andExpect(xpath("//id").string(agent.getIdentificador()))
+                .andExpect(xpath("//kind").string(agent.getTipo()))
+                .andExpect(xpath("//kindCode").string(String.valueOf(kindCode)));
     }
 
     /**
