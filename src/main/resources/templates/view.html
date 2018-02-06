@@ -65,19 +65,23 @@
    <table>
     <tr>
         <td>Nombre: </td>
-        <td><span th:text="${session.agent.nombre}"/></td>
+        <td><span th:text="${session.agent.name}"/></td>
     </tr>
     <tr>
-        <td>Apellidos: </td>
-        <td><span th:text="${session.agent.apellidos}"/></td>
+        <td>Location: </td>
+        <td><span th:text="${session.agent.location}"/></td>
     </tr>
     <tr>
-    	<td>Direccion: </td>
-    	<td><span th:text="${session.agent.direccionPostal}"/></td>
+    	<td>Id: </td>
+    	<td><span th:text="${session.agent.id}"/></td>
     </tr>
     <tr>
-    	<td>Nacionalidad: </td>
-    	<td><span th:text="${session.agent.nacionalidad}"/></td>
+    	<td>Kind: </td>
+    	<td><span th:text="${session.agent.kind}"/></td>
+    </tr>
+     <tr>
+    	<td>Kindcode: </td>
+    	<td><span th:text="${session.agent.kindcode}"/></td>
     </tr>
     <tr>
     	<td><a href="changeInfo">Modificar datos</a></td>

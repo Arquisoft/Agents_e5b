@@ -81,6 +81,7 @@ public class WebController {
 			//c = cc.getAgent(user, password);
 			
 			c = cc.getAgent(login, password, kind);
+			
 			if (c != null) {
 				//MFA - Cambiamos la session de citizen a agent
 				//session.setAttribute("citizen", c);

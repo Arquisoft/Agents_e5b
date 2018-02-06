@@ -7,7 +7,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 	
-	CitizenControllerTest.class,
+	AgentControllerTest.class,
 	DBTest.class,
 	UtilTest.class,
 	WebControllerTest.class
