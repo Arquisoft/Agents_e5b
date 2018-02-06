@@ -20,7 +20,7 @@ public class CSVKindsReader {
 
 	public static void CSVKindsReader2() {
 		//ruta del fichero csv
-		String csvFile = "tipoagente.csv";
+		String csvFile = "src/main/resources/tipoagente.csv";
 		BufferedReader br = null;
 		String line = "";
 		//separa por comas
@@ -58,8 +58,11 @@ public class CSVKindsReader {
 	}
 
 		
-	public static void leerMap(String key){
-		System.out.println(map.get(key));
+	public static int devolverMap(String key){
+		//lee primero el fichero
+		CSVKindsReader2();
+		//System.out.println(map.get(key));
+		return map.get(key);
 	}
 	
 	
