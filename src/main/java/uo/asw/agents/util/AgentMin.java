@@ -4,20 +4,20 @@ package uo.asw.agents.util;
 //y en dichos tests se hace una comprobacion sin mucho sentido. Creo que está de relleno.
 public class AgentMin {
 	
-	public Long id;
-	public String name;
-	public String location;
-	public String email;
-	public String kind;
-	//public String kindCode;
+	private Long id;
+	private String name;
+	private String location;
+	private String email;
+	private String kind;
+	public int kindCode;
 	
-	public AgentMin(Long id, String name, String location, String email, String kind){//, String kindCode) {
+	public AgentMin(Long id, String name, String location, String email, String kind, int kindCode) {
 		this.id = id;
 		this.name = name;
 		this.location = location;
 		this.email = email;
 		this.kind = kind;
-		//this.kindCode = kindCode;
+		this.kindCode = kindCode;
 	}
 	
 	public Long getId() {
@@ -58,6 +58,14 @@ public class AgentMin {
 
 	public void setKind(String kind) {
 		this.kind = kind;
+	}
+
+	public int getKindCode() {
+		return kindCode;
+	}
+
+	public void setKindCode(int kindCode) {
+		this.kindCode = kindCode;
 	}
 
 	@Override

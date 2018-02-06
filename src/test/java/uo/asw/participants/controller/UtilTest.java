@@ -53,11 +53,11 @@ public class UtilTest {
     @Before
     public void setUp() throws Exception {
     	//agentMin = new AgentMin((long) 1, "nombre","agente","usuario@gmail.com");
-    	agentMin = new AgentMin((long) 1, "nombre", null, "usuario@gmail.com", "Agent");
+    	agentMin = new AgentMin((long) 1, "nombre", null, "usuario@gmail.com", "Agent", 1);
     }
 
 	@Test
-	public void newAgentMinTest() {
+	public void newAgentMinTest() {//TODO - Revisar este test
 		
 		Long id = (long) 2;
 		String nombre = "fernando";
@@ -68,16 +68,16 @@ public class UtilTest {
 		//int tipoCodigo=1;
 		String email = "fernando@gmail.com";
 
-		agentMin.id=id;
-		agentMin.name= nombre + apellidos;
-		agentMin.email = email;
+		agentMin.setId(id);
+		agentMin.setName(nombre + apellidos);
+		agentMin.setEmail(email);
 
 	
-		assertEquals(id, agentMin.id);
-		assertEquals(nombre+apellidos, agentMin.name);
+		assertEquals(id, agentMin.getId());
+		assertEquals(nombre+apellidos, agentMin.getName());
 		//assertEquals(apellidos, citizenMin.getLastName());
 		//assertEquals(edad, citizenMin.getEdad());
-		assertEquals(email, agentMin.email);
+		assertEquals(email, agentMin.getEmail());
 		
 	}
 	

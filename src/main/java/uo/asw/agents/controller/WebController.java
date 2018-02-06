@@ -80,10 +80,9 @@ public class WebController {
 			//MFA- Actualizamos el getAgent con kind
 			//c = cc.getAgent(user, password);
 			
-			c = cc.getAgent(login, password, kind);
+			c = cc.getAgent(login, password, kind);//TODO - Mal, no debe llamar a getAgent, sino al servicio web
 			
 			if (c != null) {
-				//MFA - Cambiamos la session de citizen a agent
 				//session.setAttribute("citizen", c);
 				session.setAttribute("agent",c);
 				model.addAttribute("resultado", "Bienvenid@ " + c.getNombre());

@@ -36,6 +36,7 @@ public class AgentControllerImpl implements AgentController {
 		password = (String) payload.get("password");
 		kind = (String) payload.get("kind");
 		AgentMin c = agentsService.getAgentInfo(login, password,kind);
+		
 		if(c == null){
 			return new ResponseEntity<AgentMin>(HttpStatus.NOT_FOUND);
 		}

@@ -40,7 +40,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * Plantillas para los tests extraidos de los tutoriales de Spring (https://spring.io/guides/tutorials/bookmarks/)
  * @since 0.0.1
  */
-public class AgentControllerTest { //TODO - Renombrar a AgentControllerTest, por ejemplo
+public class AgentControllerTest {
 
     private MockMvc mockMvc;
     @SuppressWarnings("rawtypes")
