@@ -48,7 +48,7 @@
 -->
 
     
-<h2>Tu informacion: </h2>
+<h2>Agent Information: </h2>
 <form method="POST" action="changeEmail">
 		<table>
 			<tr>
@@ -58,30 +58,30 @@
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" name="updateEmail"
-					value="Actualizar email" /></td>
+					value="Update email" /></td>
 			</tr>
 		</table>
 	</form>
    <table>
     <tr>
         <td>Nombre: </td>
-        <td><span th:text="${session.agent.email}"/></td>
+        <td><span th:text="${session.agent.nombre}"/></td>
     </tr>
     <tr>
         <td>Location: </td>
-        <td><span th:text="${session.agent.email}"/></td>
+        <td><span th:text="${session.agent.localizacion}"/></td>
     </tr>
     <tr>
     	<td>Id: </td>
-    	<td><span th:text="${session.agent.email}"/></td>
+    	<td><span th:text="${session.agent.identificador}"/></td>
     </tr>
     <tr>
     	<td>Kind: </td>
-    	<td><span th:text="${session.agent.email}"/></td>
+    	<td><span th:text="${session.agent.tipo}"/></td>
     </tr>
      <tr>
     	<td>Kindcode: </td>
-    	<td><span th:text="${session.agent.email}"/></td>
+    	<td>TO DO <!-- <span th:text="${session.agent.tipocodigo}"/>--></td>
     </tr>
     <tr>
     	<td><a href="changeInfo">Modificar datos</a></td>
