@@ -93,6 +93,55 @@ public class WebController {
 
 	}
 	
+// TODO - INTENTO DE LLAMAR AL SERVICIO WEB Y RECUPERAR LOS DATOS, PARA GUARDARLOS EN SESION EN LUGAR DE GUARDAR UN AGENT
+//	/**
+//	 * Recibe los datos de login del usuario, busca si exite ese usuario y en
+//	 * caso de exitir pasa a la siguiente página que muestra la informacion. 
+//	 * En caso contrario muestra la página de error
+//	 * 
+//	 * @param session
+//	 *            mantiene la sesion
+//	 * @param user
+//	 *            nombre del login
+//	 * @param password
+//	 *            contresena del usuario
+//	 * @param model
+//	 * @return view si exito, error si fracaso
+//	 */
+//	@RequestMapping(value = "/info", method = RequestMethod.POST)
+//	public String showInfo(HttpSession session, @RequestParam String login, @RequestParam String password, @RequestParam String kind, Model model) {
+//		AgentMin agentInfo = null;
+//		
+//		if (login != null && password != null && kind != null) {
+//			//Preparamos los parametros de la petición post
+//	        Map<String, Object> payload = new HashMap<String, Object>() {
+//				private static final long serialVersionUID = 1L;
+//
+//				{
+//	                put("login", login);
+//	                put("password", password);
+//	                put("kind", kind);
+//	            }
+//	        };
+//	        
+//	        AgentControllerImpl agentController = new AgentControllerImpl();
+//			agentInfo = agentController.getAgent(payload).getBody(); 
+//			
+//			if (agentInfo != null) {
+//				session.setAttribute("nombre",agentInfo.getName());
+//				session.setAttribute("identificador",agentInfo.getId());
+//				session.setAttribute("localizacion",agentInfo.getLocation());
+//				session.setAttribute("email",agentInfo.getEmail());
+//				session.setAttribute("tipo",agentInfo.getKind());
+//				session.setAttribute("tipocodigo",agentInfo.getKindCode());
+//				model.addAttribute("resultado", "Bienvenid@ " + agentInfo.getName());
+//				return "view";
+//			}
+//		}
+//		return "error";
+//
+//	}
+	
 	
 	
 
