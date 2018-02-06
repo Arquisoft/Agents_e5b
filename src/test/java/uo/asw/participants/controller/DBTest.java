@@ -22,7 +22,7 @@ public class DBTest {
 
 	
 	@Autowired
-    private AgentDAO citizenDAO;
+    private AgentDAO agentDAO;
 	
 	@Test
 	/**
@@ -30,9 +30,9 @@ public class DBTest {
 	 * @throws Exception
 	 */
     public void testGetExistingAgents() throws Exception {
-    	Agent person = citizenDAO.getAgent("31668313G", "1234", "Person");
-    	Agent entity = citizenDAO.getAgent("A58818501", "1234", "Entity");
-    	Agent sensor = citizenDAO.getAgent("525695S", "1234", "Sensor");
+    	Agent person = agentDAO.getAgent("31668313G", "1234", "Person");
+    	Agent entity = agentDAO.getAgent("A58818501", "1234", "Entity");
+    	Agent sensor = agentDAO.getAgent("525695S", "1234", "Sensor");
 
 		assertEquals("31668313G", person.getNombreUsuario());
 		assertEquals("1234", person.getContraseña());
@@ -53,9 +53,9 @@ public class DBTest {
 	 * @throws Exception
 	 */
     public void testAgentNotFoundBecauseLoginIsNotValid() throws Exception {
-    	Agent person = citizenDAO.getAgent("11111111H", "1234", "Person");
-    	Agent entity = citizenDAO.getAgent("11111111H", "1234", "Entity");
-    	Agent sensor = citizenDAO.getAgent("11111111H", "1234", "Sensor");
+    	Agent person = agentDAO.getAgent("11111111H", "1234", "Person");
+    	Agent entity = agentDAO.getAgent("11111111H", "1234", "Entity");
+    	Agent sensor = agentDAO.getAgent("11111111H", "1234", "Sensor");
 
     	assertNull(person);
     	assertNull(entity);
@@ -69,9 +69,9 @@ public class DBTest {
 	 * @throws Exception
 	 */
     public void testAgentNotFoundBecausePasswordIsNotValid() throws Exception {
-    	Agent person = citizenDAO.getAgent("31668313G", "invalidPass", "Person");
-    	Agent entity = citizenDAO.getAgent("A58818501", "invalidPass", "Entity");
-    	Agent sensor = citizenDAO.getAgent("525695S", "invalidPass", "Sensor");
+    	Agent person = agentDAO.getAgent("31668313G", "invalidPass", "Person");
+    	Agent entity = agentDAO.getAgent("A58818501", "invalidPass", "Entity");
+    	Agent sensor = agentDAO.getAgent("525695S", "invalidPass", "Sensor");
     	
     	assertNull(person);
     	assertNull(entity);
@@ -84,9 +84,9 @@ public class DBTest {
 	 * @throws Exception
 	 */
     public void testAgentNotFoundBecauseKindIsNotValid() throws Exception {
-    	Agent person = citizenDAO.getAgent("31668313G", "1234", "KindNotValid");
-    	Agent entity = citizenDAO.getAgent("A58818501", "1234", "KindNotValid");
-    	Agent sensor = citizenDAO.getAgent("525695S", "1234", "KindNotValid");
+    	Agent person = agentDAO.getAgent("31668313G", "1234", "KindNotValid");
+    	Agent entity = agentDAO.getAgent("A58818501", "1234", "KindNotValid");
+    	Agent sensor = agentDAO.getAgent("525695S", "1234", "KindNotValid");
     	
     	assertNull(person);
     	assertNull(entity);
@@ -99,9 +99,9 @@ public class DBTest {
 	 * @throws Exception
 	 */
     public void testAgentNotFoundBecauseLoginAndPasswordAreNotValid() throws Exception {
-    	Agent person = citizenDAO.getAgent("11111111H", "invalidPass", "Person");
-    	Agent entity = citizenDAO.getAgent("11111111H", "invalidPass", "Entity");
-    	Agent sensor = citizenDAO.getAgent("11111111H", "invalidPass", "Sensor");
+    	Agent person = agentDAO.getAgent("11111111H", "invalidPass", "Person");
+    	Agent entity = agentDAO.getAgent("11111111H", "invalidPass", "Entity");
+    	Agent sensor = agentDAO.getAgent("11111111H", "invalidPass", "Sensor");
     	
     	assertNull(person);
     	assertNull(entity);
@@ -114,9 +114,9 @@ public class DBTest {
 	 * @throws Exception
 	 */
     public void testAgentNotFoundBecauseLoginAndKindAreNotValid() throws Exception {
-    	Agent person = citizenDAO.getAgent("11111111H", "1234", "KindNotValid");
-    	Agent entity = citizenDAO.getAgent("11111111H", "1234", "KindNotValid");
-    	Agent sensor = citizenDAO.getAgent("11111111H", "1234", "KindNotValid");
+    	Agent person = agentDAO.getAgent("11111111H", "1234", "KindNotValid");
+    	Agent entity = agentDAO.getAgent("11111111H", "1234", "KindNotValid");
+    	Agent sensor = agentDAO.getAgent("11111111H", "1234", "KindNotValid");
     	
     	assertNull(person);
     	assertNull(entity);
@@ -129,9 +129,9 @@ public class DBTest {
 	 * @throws Exception
 	 */
     public void testAgentNotFoundBecausePasswordAndKindAreNotValid() throws Exception {
-    	Agent person = citizenDAO.getAgent("31668313G", "invalidPass", "KindNotValid");
-    	Agent entity = citizenDAO.getAgent("A58818501", "invalidPass", "KindNotValid");
-    	Agent sensor = citizenDAO.getAgent("525695S", "invalidPass", "KindNotValid");
+    	Agent person = agentDAO.getAgent("31668313G", "invalidPass", "KindNotValid");
+    	Agent entity = agentDAO.getAgent("A58818501", "invalidPass", "KindNotValid");
+    	Agent sensor = agentDAO.getAgent("525695S", "invalidPass", "KindNotValid");
     	
     	assertNull(person);
     	assertNull(entity);
@@ -145,17 +145,17 @@ public class DBTest {
 	 * @throws Exception
 	 */
     public void testUpdatePassword() throws Exception {
-    	Agent agent = citizenDAO.getAgent("31668313G", "1234", "Person");
+    	Agent agent = agentDAO.getAgent("31668313G", "1234", "Person");
     	
     	//Cambio de contraseña
     	agent.setContraseña("newPassword");
-       	agent = citizenDAO.updateInfo(agent);
+       	agent = agentDAO.updateInfo(agent);
        
        	assertEquals("newPassword", agent.getContraseña());
        	
        	//Cambio de contraseña por la original
        	agent.setContraseña("1234");
-       	agent = citizenDAO.updateInfo(agent);
+       	agent = agentDAO.updateInfo(agent);
        	
        	assertEquals("1234", agent.getContraseña()); 	
     }

@@ -71,12 +71,15 @@ public class WebController {
 	
 	//MFA - Actualizamos el showInfo con las nuevas necesidades
 	//public String showInfo(HttpSession session, @RequestParam String user, @RequestParam String password, Model model) {
+	
 	public String showInfo(HttpSession session, @RequestParam String login, @RequestParam String password, @RequestParam String kind, Model model) {
 		Agent c = null;
-
+		
 		if (login != null && password != null && kind != null) {
+			
 			//MFA- Actualizamos el getAgent con kind
 			//c = cc.getAgent(user, password);
+			
 			c = cc.getAgent(login, password, kind);
 			if (c != null) {
 				//MFA - Cambiamos la session de citizen a agent
@@ -89,7 +92,6 @@ public class WebController {
 		return "error";
 
 	}
-	
 	
 	
 	
