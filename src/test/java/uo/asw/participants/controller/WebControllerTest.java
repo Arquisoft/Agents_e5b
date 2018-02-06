@@ -46,11 +46,11 @@ public class WebControllerTest {
     @Test
 	 //usuario y contraseña correctos
     public void showInfoTest1() throws Exception {
-
+    	
       mockMvc.perform(post("/info")
-		.param("identificador", "31668313G")
-		.param("contrasena", "1234")
-		.param("tipo","Person"))
+		.param("login", "31668313G")
+		.param("password", "1234")
+		.param("kind","Person"))
       	.andExpect(status().isOk())
       	.andExpect(model().attributeExists("resultado"))
       	.andExpect(view().name("view"));
@@ -75,9 +75,9 @@ public class WebControllerTest {
     public void showInfoTest3() throws Exception {
 
        	mockMvc.perform(post("/info")
-       	.param("identificador", "31668313G")
-       	.param("contrasena", "1234")
-       	.param("tipo","Person"))
+       	.param("login", "31668313G")
+       	.param("password", "1243")
+       	.param("kind","Person"))
      	.andExpect(view().name("error"));
    
     }
@@ -111,7 +111,7 @@ public class WebControllerTest {
 
 	   //Cambio de contraseña
        mockMvc.perform(post("/changeInfo")
-    	.param("contrasena", "1234")
+    	.param("password", "1234")
 		.param("newPassword", "new")
 		.sessionAttr("agent", c))
         .andExpect(status().isOk())
@@ -119,7 +119,7 @@ public class WebControllerTest {
 
 	   //Cambio de contraseña de nuevo por la original
        mockMvc.perform(post("/changeInfo")
-    	.param("contrasena", "new")
+    	.param("password", "new")
 		.param("newPassword", "1234")
 		.sessionAttr("agent", c))
         .andExpect(status().isOk())
