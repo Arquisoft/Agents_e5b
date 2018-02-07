@@ -184,9 +184,9 @@ public class WebController {
 	 */
 	@RequestMapping(value = "/changeInfo", method = RequestMethod.POST)
 	public String changePassword(HttpSession session, @RequestParam String password, @RequestParam String newPassword,
-			Model model) {
+			Model model) {//Tenemos que enviar el usuario (y quizas el kind)
 
-		Agent c = (Agent) session.getAttribute("agent");
+		Agent c = (Agent) session.getAttribute("agent");//No se debe recoger esto
 		if (c != null) {
 			if (c.getContraseña().equals(password) && !newPassword.isEmpty()) {
 				c.setContraseña(newPassword);

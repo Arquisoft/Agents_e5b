@@ -1,7 +1,5 @@
 package uo.asw.agents.util;
 
-//TODO - Averiguar para que sirve esta clase, porque creo que no se utiliza en ninún sitio salvo en los test
-//y en dichos tests se hace una comprobacion sin mucho sentido. Creo que está de relleno.
 public class AgentMin {
 	
 	private String id;
@@ -72,7 +70,7 @@ public class AgentMin {
 	public String toString() {
 		return "AgentMin [id=" + id + ", name=" + name + ", location=" + location + ", email=" + email + ", kind="
 				+ kind + ", kindCode=" 
-				//+ kindCode 
+				+ kindCode 
 				+ "]";
 	}
 	

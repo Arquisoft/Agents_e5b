@@ -52,33 +52,34 @@ public class UtilTest {
 	
     @Before
     public void setUp() throws Exception {
-    	//agentMin = new AgentMin((long) 1, "nombre","agente","usuario@gmail.com");
     	agentMin = new AgentMin("111111H", "nombre", null, "usuario@gmail.com", "Agent", 1);
     }
 
 	@Test
-	public void newAgentMinTest() {//TODO - Revisar este test
+	public void newAgentMinTest() {
 		
 		String id = "222222J";
 		String nombre = "fernando";
 		String apellidos = "sanchez";
-		//Date fechaNacimiento = new Date();
-		//int edad = DateUtil.getYears(fechaNacimiento);
-		
-		//int tipoCodigo=1;
+		String kind = "Person";
+		int kindCode = 1;
 		String email = "fernando@gmail.com";
+		String location = "1,1";
 
 		agentMin.setId(id);
 		agentMin.setName(nombre + apellidos);
+		agentMin.setKind(kind);
+		agentMin.setKindCode(kindCode);
 		agentMin.setEmail(email);
+		agentMin.setLocation(location);
 
 	
 		assertEquals(id, agentMin.getId());
 		assertEquals(nombre+apellidos, agentMin.getName());
-		//assertEquals(apellidos, citizenMin.getLastName());
-		//assertEquals(edad, citizenMin.getEdad());
+		assertEquals(kind, agentMin.getKind());
+		assertEquals(kindCode, agentMin.getKindCode());
 		assertEquals(email, agentMin.getEmail());
-		
+		assertEquals(location, agentMin.getLocation());
 	}
 	
 	
@@ -86,20 +87,6 @@ public class UtilTest {
 	public void dateUtilTest() throws ParseException {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-
-		//Originales
-		//TODO - Quitar
-//		//Ya ha cumplido años
-//		String dateString1 = "10-02-1990";
-//		Date date1 = sdf.parse(dateString1);
-//		int edad1 = DateUtil.getYears(date1);
-//		assertEquals(26, edad1);
-//
-//		//Aun no ha cumplido años
-//		String dateString2 = "10-08-1990";
-//		Date date2 = sdf.parse(dateString2);
-//		int edad2 = DateUtil.getYears(date2);
-//		assertEquals(27, edad2);
 		
 		//Ya ha cumplido años
 		String dateString1 = "10-01-1990";

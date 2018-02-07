@@ -19,7 +19,7 @@ public class Agent {
 	private Long id;
 	
 	@NotNull
-	@Column(name = "identificador", unique=true)//TODO - Sobra name = "identificador" ??
+	@Column(name = "identificador", unique=true)
 	private String identificador;
 	
 	@NotNull

@@ -29,7 +29,7 @@ public class AgentsServiceImpl implements AgentsService {
     }
 
     @Override
-    public Agent changeInfo(Agent updatedData) {
+    public Agent changeInfo(Agent updatedData) {//TODO - Se le tiene que pasar una combinacion de usuario/contraseña/nuevaContraseña
         return agentDAO.updateInfo(updatedData);
     }
 }
