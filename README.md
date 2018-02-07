@@ -34,9 +34,10 @@ Skeleton of participants module
  * Login: 525695S    Password: 1234  Kind: Sensor
 3. Aparecerá la pantalla que muestra los datos del agente
  * Se puede modificar el email directamente (comprobándose si el email es válido)
+ * Se puede modificar el nombre directamente
  * Se puede ir a la pantalla de cambio de contraseña
 4. Cambio de contraseña:
- * Escribir la contreseña antigua
+ * Escribir la contraseña antigua
  * Escribir la contraseña nueva
 
 ## Servicio REST
