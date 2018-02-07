@@ -6,39 +6,73 @@
 </head>
 <body>
 	
-    <!-- MFA - Actualizacion session
+ 
     <h1>
-		Cambiar la contrasena del agente <span
-			th:text="${session.citizen.nombre}" />
-	</h1>
-    -->
-    
-    <h1>
-		Cambiar la contrasena del agente <span
-			th:text="${session.agent.nombre}" />
-	</h1>
+		Change Agent <span
+			th:text="${session.agent.nombre}" /> Info
+			</h1>
+	
+	<h2>Change Password</h2>
+	
 	<form method="POST" action="changeInfo">
 		<table>
 			<tr>
-				<td>Contrasena:</td>
+				<td>Password:</td>
 				<td><input type="password" name="password" required="required"
-					placeholder="Contrasena" /></td>
+					placeholder="Password" /></td>
 			</tr>
 			<tr>
-				<td>Nueva contrasena:</td>
+				<td>New Password:</td>
 				<td><input type="password" name="newPassword"
-					required="required" placeholder="Nueva contrasena" /></td>
+					required="required" placeholder="New Password" /></td>
 			</tr>
 			<tr>
 				<td><input type="submit" name="updateInfo"
-					value="Actualizar contrasena" /></td>
+					value="Change Password" /></td>
 				<td><input id="btnReset" type="reset" value="Reset" /></td>
 			</tr>
+			
+		</table>
+	</form>
+	
+	<h2>Change Email</h2>
+	<form method="POST" action="changeEmail">
+		<table>
 			<tr>
-				<td><a href="/">Volver a inicio</a></td>
-
+				<td>Email:</td>
+				<td><input type="text" name="email" required="required"
+					 th:value="${session.agent.email}" th:placeholder = "${session.agent.email}"/></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" name="updateEmail"
+					value="Update email" /></td>
 			</tr>
 		</table>
 	</form>
+	
+	<h2>Change Name</h2>
+	<form method="POST" action="changeName">
+		<table>
+			<tr>
+				<td>Name:</td>
+				<td><input type="text" name="nombre" required="required"
+					 th:value="${session.agent.nombre}" th:placeholder = "${session.agent.nombre}"/></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" name="updateName"
+					value="Update name" /></td>
+			</tr>
+		</table>
+	</form>
+	<table>
+	<tr>
+		<!--  	<td><a href="/changeEmail">Agent Info</a></td> -->
+				<td><a href="/">Return to portal</a></td>
+
+			</tr>
+	</table>
+	
+	
+	
 </body>
 </html>

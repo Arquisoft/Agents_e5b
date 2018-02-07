@@ -3,79 +3,18 @@
     <title>Spring MVC Form Handling</title>
 </head>
 <body>
-
-    <!-- MFA - Actualizacion session
-
-<h2>Tu informacion: </h2>
-<form method="POST" action="changeEmail">
-		<table>
-			<tr>
-				<td>Email:</td>
-				<td><input type="text" name="email" required="required"
-					 th:value="${session.citizen.email}" th:placeholder = "${session.citizen.email}"/></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" name="updateEmail"
-					value="Actualizar email" /></td>
-			</tr>
-		</table>
-	</form>
-   <table>
-    <tr>
-        <td>Nombre: </td>
-        <td><span th:text="${session.citizen.nombre}"/></td>
-    </tr>
-    <tr>
-        <td>Apellidos: </td>
-        <td><span th:text="${session.citizen.apellidos}"/></td>
-    </tr>
-    <tr>
-    	<td>Direccion: </td>
-    	<td><span th:text="${session.citizen.direccionPostal}"/></td>
-    </tr>
-    <tr>
-    	<td>Nacionalidad: </td>
-    	<td><span th:text="${session.citizen.nacionalidad}"/></td>
-    </tr>
-    <tr>
-    	<td><a href="changeInfo">Modificar datos</a></td>
-    	<td> <a href="/">Volver a inicio</a></td>
-    </tr>
-</table>  
-<br/>
-<i><span th:if="${resultado != null}" th:text="${resultado}">Resultado</span></i>
-
--->
-
     
 <h2>Agent Information: </h2>
-<form method="POST" action="changeEmail">
-		<table>
-			<tr>
-				<td>Email:</td>
-				<td><input type="text" name="email" required="required"
-					 th:value="${session.agent.email}" th:placeholder = "${session.agent.email}"/></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" name="updateEmail"
-					value="Update email" /></td>
-			</tr>
-		</table>
-	</form>
-	<form method="POST" action="changeName">
-		<table>
-			<tr>
-				<td>Nombre:</td>
-				<td><input type="text" name="nombre" required="required"
-					 th:value="${session.agent.nombre}" th:placeholder = "${session.agent.nombre}"/></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" name="updateName"
-					value="Update name" /></td>
-			</tr>
-		</table>
-	</form>
+
    <table>
+    <tr>
+        <td>Name: </td>
+        <td><span th:text="${session.agent.nombre}"/></td>
+    </tr>
+     <tr>
+        <td>Email: </td>
+        <td><span th:text="${session.agent.email}"/></td>
+    </tr>
      <tr>
         <td>Location: </td>
         <td><span th:text="${session.agent.localizacion}"/></td>
@@ -93,8 +32,8 @@
     	<td><span th:text="${session.tipoCodigo}"/></td>
     </tr>
     <tr>
-    	<td><a href="changeInfo">Modificar datos</a></td>
-    	<td> <a href="/">Volver a inicio</a></td>
+    	<td><a href="changeInfo">Change Info</a></td>
+    	<td> <a href="/">Return to Portal</a></td>
     </tr>
 </table>  
 <br/>
