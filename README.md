@@ -33,12 +33,18 @@ Skeleton of participants module
  * Login: A58818501  Password: 1234  Kind: Entity
  * Login: 525695S    Password: 1234  Kind: Sensor
 3. Aparecerá la pantalla que muestra los datos del agente
- * Se puede modificar el email directamente (comprobándose si el email es válido)
- * Se puede modificar el nombre directamente
- * Se puede ir a la pantalla de cambio de contraseña
-4. Cambio de contraseña:
- * Escribir la contraseña antigua
- * Escribir la contraseña nueva
+ * Se puede ir a la pantalla de cambio de datos
+ * Se puede ir a la pantalla de inicio
+4. Cambio de datos:
+ * Se puede cambiar la contraseña
+   * Escribir la contraseña antigua
+   * Escribir la contraseña nueva
+ * Se puede cambiar el email del agente, siempre que sea una dirección de email válida 
+ * Se puede cambiar el nombre del agente, siempre que no esté en blanco
+ * Se puede cambiar la localización del agente u omitirla
+ * Se puede cambiar el tipo del agente, siempre que sea uno de los 3 tipos válidos
+ * Se puede ir a la pantalla de vista de datos del agente
+ * Se puede ir a la pantalla de inicio
 
 ## Servicio REST
    El punto de entrada se encuentra en http://localhost:8080/user.
