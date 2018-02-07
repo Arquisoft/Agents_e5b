@@ -26,7 +26,7 @@ public class AgentControllerImpl implements AgentController {
 	@RequestMapping(value = "/user", method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-	public ResponseEntity<AgentMin> getAgent(@RequestBody Map<String, Object> payload) {
+	public ResponseEntity<AgentMin> getAgentJson(@RequestBody Map<String, Object> payload) {
 		//if(!payload.keySet().containsAll(Arrays.asList("login", "password"))){
 		//	return new ResponseEntity<CitizenMin>(HttpStatus.BAD_REQUEST);
 		//}

@@ -9,5 +9,5 @@ import java.util.Map;
 
 public interface AgentController {
 
-	public ResponseEntity<AgentMin> getAgent(Map<String, Object> payload);
+	public ResponseEntity<AgentMin> getAgentJson(Map<String, Object> payload);
 }
