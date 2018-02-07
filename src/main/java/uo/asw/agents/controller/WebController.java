@@ -219,4 +219,27 @@ public class WebController {
 		}
 		return "error";
 	}
+	
+	/**
+	 * Modifica el nombre del usuario en sesión, comprueba que el email es correcto
+	 * segun un patron y muestra el resultado sobre el HTML view, o redirige a la 
+	 * pagina de error en caso de que no se encuentre el usuario en sesion
+	 * @param session objeto session del usuario registrado
+	 * @param email nuevo email de usuario
+	 * @param model
+	 * @return view si el usuario esta registrado, error si el usuario no esta registrado
+	 */
+	@RequestMapping(value = "/changeName", method = RequestMethod.POST)
+	public String changeName(HttpSession session, @RequestParam String nombre, Model model){
+		//MFA - Actualizacion session
+		//Agent c = (Agent) session.getAttribute("citizen");
+		Agent c = (Agent) session.getAttribute("agent");
+		if(c != null){
+				c.setNombre(nombre);
+				cc.updateInfo(c);
+				model.addAttribute("resultado", "Nombre actualizado correctemente a: " + nombre);
+			
+			}
+			return "view";	
+	}
 }

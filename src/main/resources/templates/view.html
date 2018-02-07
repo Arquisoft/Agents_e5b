@@ -62,12 +62,21 @@
 			</tr>
 		</table>
 	</form>
+	<form method="POST" action="changeName">
+		<table>
+			<tr>
+				<td>Nombre:</td>
+				<td><input type="text" name="nombre" required="required"
+					 th:value="${session.agent.nombre}" th:placeholder = "${session.agent.nombre}"/></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" name="updateName"
+					value="Update name" /></td>
+			</tr>
+		</table>
+	</form>
    <table>
-    <tr>
-        <td>Nombre: </td>
-        <td><span th:text="${session.agent.nombre}"/></td>
-    </tr>
-    <tr>
+     <tr>
         <td>Location: </td>
         <td><span th:text="${session.agent.localizacion}"/></td>
     </tr>
