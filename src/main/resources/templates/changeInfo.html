@@ -64,14 +64,45 @@
 			</tr>
 		</table>
 	</form>
+	<h2>Change Localization</h2>
+	<form method="POST" action="changeLocalization">
+		<table>
+			<tr>
+				<td>Localization:</td>
+				<td><input type="text" name="localization"
+					 th:value="${session.agent.localizacion}" th:placeholder = "${session.agent.localizacion}"/></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" name="updateLocalization"
+					value="Update localization" /></td>
+			</tr>
+		</table>
+	</form>
+	
+	<h2>Change Kind</h2>
+	<form method="POST" action="changeKind">
+		<table>
+			<tr>
+				<td>Kind:</td>
+				<td><input type="text" name="kind" required="required"
+					 th:value="${session.agent.tipo}" th:placeholder = "${session.agent.tipo}"/></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" name="updateKind"
+					value="Update kind" /></td>
+			</tr>
+		</table>
+	</form>
+	<br/>
+	<footer>
 	<table>
 	<tr>
-		<!--  	<td><a href="/changeEmail">Agent Info</a></td> -->
-				<td><a href="/">Return to portal</a></td>
+		  	<td><a href="/viewInfo">Agent Info</a></td>
+		  	<td><a href="/">Return to portal</a></td>
 
 			</tr>
 	</table>
-	
+	</footer>
 	
 	
 </body>

@@ -70,17 +70,13 @@ public class WebController {
 	 */
 	@RequestMapping(value = "/info", method = RequestMethod.POST)
 	
-	//MFA - Actualizamos el showInfo con las nuevas necesidades
-	//public String showInfo(HttpSession session, @RequestParam String user, @RequestParam String password, Model model) {
-	
+
 	public String showInfo(HttpSession session, @RequestParam String login, @RequestParam String password, @RequestParam String kind, Model model) {
 		Agent c = null;
 		
 		if (login != null && password != null && kind != null) {
 			
-			//MFA- Actualizamos el getAgent con kind
-			//c = cc.getAgent(user, password);
-			
+					
 			c = cc.getAgent(login, password, kind);//TODO - Mal, no debe llamar a getAgent, sino al servicio web
 			
 			if (c != null) {
@@ -89,7 +85,7 @@ public class WebController {
 				
 				session.setAttribute("agent",c);
 				session.setAttribute("tipoCodigo", kindCode);
-				model.addAttribute("resultado", "Bienvenid@ " + c.getNombre());
+				model.addAttribute("resultado", "Welcome " + c.getNombre());
 				return "view";
 			}
 		}
@@ -159,8 +155,21 @@ public class WebController {
 		return "changeInfo";
 	}
 
+	
 	/**
-	 * Cambia la contrasena de un usuario, siempre que e usuario este en sesion,
+	 * Acceso a la página de información del usuario
+	 * 
+	 * @return view html para ver datos del usuario
+	 */
+	@RequestMapping(value = "/viewInfo", method = RequestMethod.GET)
+	public String viewInfo() {
+		return "view";
+	}
+	
+	
+	
+	/**
+	 * Cambia la contrasena de un usuario, siempre que el usuario este en sesion,
 	 * la contrasena antigua se igual que la contrasena de parametro y la nueva
 	 * contrasena no sea vacia
 	 * 
@@ -176,8 +185,7 @@ public class WebController {
 	@RequestMapping(value = "/changeInfo", method = RequestMethod.POST)
 	public String changePassword(HttpSession session, @RequestParam String password, @RequestParam String newPassword,
 			Model model) {
-		//MFA - Actualizacion session
-		//Agent c = (Agent) session.getAttribute("citizen");
+
 		Agent c = (Agent) session.getAttribute("agent");
 		if (c != null) {
 			if (c.getContraseña().equals(password) && !newPassword.isEmpty()) {
@@ -204,16 +212,15 @@ public class WebController {
 	 */
 	@RequestMapping(value = "/changeEmail", method = RequestMethod.POST)
 	public String changeEmail(HttpSession session, @RequestParam String email, Model model){
-		//MFA - Actualizacion session
-		//Agent c = (Agent) session.getAttribute("citizen");
+
 		Agent c = (Agent) session.getAttribute("agent");
 		if(c != null){
 			if(!email.isEmpty() && Check.validateEmail(email)){
 				c.setEmail(email);
 				cc.updateInfo(c);
-				model.addAttribute("resultado", "Email actualizado correctemente a: " + email);
+				model.addAttribute("resultado", "Agent email updated to: " + email);
 			}else{
-				model.addAttribute("resultado", "El email no es valido, no actualizado a: " + email);
+				model.addAttribute("resultado", "Agent email "+ email + "not valid.");
 			}
 			return "view";	
 		}
@@ -231,15 +238,68 @@ public class WebController {
 	 */
 	@RequestMapping(value = "/changeName", method = RequestMethod.POST)
 	public String changeName(HttpSession session, @RequestParam String nombre, Model model){
-		//MFA - Actualizacion session
-		//Agent c = (Agent) session.getAttribute("citizen");
+		
 		Agent c = (Agent) session.getAttribute("agent");
 		if(c != null){
 				c.setNombre(nombre);
 				cc.updateInfo(c);
-				model.addAttribute("resultado", "Nombre actualizado correctemente a: " + nombre);
-			
+				model.addAttribute("resultado", "Agent name updated to: " + nombre);
+				
+				return "view";	
 			}
-			return "view";	
+			return "error";
 	}
+	
+	/**
+	 * Modifica el kind del usuario en sesión, comprueba que el kind es correcto
+	 * segun una lista y muestra el resultado sobre el HTML view, o redirige a la 
+	 * pagina de error en caso de que no se encuentre el usuario en sesion
+	 * @param session objeto session del usuario registrado
+	 * @param kind nuevo tipo de usuario
+	 * @param model
+	 * @return view si el usuario esta registrado, error si el usuario no esta registrado
+	 */
+	@RequestMapping(value = "/changeKind", method = RequestMethod.POST)
+	public String changeKind(HttpSession session, @RequestParam String kind, Model model){
+
+		Agent c = (Agent) session.getAttribute("agent");
+		if(c!=null) {
+			if(!kind.isEmpty() && Check.validateKind(kind)){
+				c.setTipo(kind);
+				cc.updateInfo(c);
+				model.addAttribute("resultado", "Agent kind updated to: " + kind);
+			}else{
+				model.addAttribute("resultado", "Agent kind " + kind + " not valid.");
+			}
+			return "view";
+		}
+		return "error";
+	}
+	
+	/**
+	 * Modifica la localización del usuario en sesión y muestra el resultado sobre el HTML view, o redirige a la 
+	 * pagina de error en caso de que no se encuentre el usuario en sesion
+	 * @param session objeto session del usuario registrado
+	 * @param localization nueva localización del usuario
+	 * @param model
+	 * @return view si el usuario esta registrado, error si el usuario no esta registrado
+	 */
+	@RequestMapping(value = "/changeLocalization", method = RequestMethod.POST)
+	public String changeLocalization(HttpSession session, @RequestParam String localization, Model model){
+
+		Agent c = (Agent) session.getAttribute("agent");
+		
+		if(c!=null) {
+			if(localization.isEmpty())
+					localization="";
+			
+			c.setLocalizacion(localization);
+			cc.updateInfo(c);
+			model.addAttribute("resultado", "Agent localization updated to: " + localization);
+			return "view";
+		}
+		return "error";
+	}
+	
+	
 }

@@ -24,4 +24,19 @@ public class Check {
  
     }
 
+    /**
+     * Valida el kind con unas opciones
+     * 
+     * @param kind
+     *            tipo a validar
+     * @return true tipo valido, false en caso contrario
+     */
+    public static boolean validateKind(String kind) {
+ 
+      
+    	return (kind.equals("Person")||kind.equals("Sensor")||kind.equals("Entity")); 
+    	
+
+    }
+
 }
