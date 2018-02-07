@@ -17,14 +17,14 @@ import javax.transaction.Transactional;
 @Repository
 @Transactional
 public class AgentDAODummy implements AgentDAO { //TODO - Si se quita lo de dummyAgent se podria renombrar la clase a AgentDatoImpl
-    private static Agent dummyAgent;
+    //private static Agent dummyAgent;
     @PersistenceContext
     private EntityManager entityManager;
     
-    static {
+    /*static {
     	dummyAgent=new Agent("123456", "pass", "Clara Oswald", "clara@tardis.co.uk", "", "Person", 1);
         //dummyCitizen = new Agent("pass", "dummy", "123456", "Clara", "Oswald", new Date(), "clara@tardis.co.uk", "The Hyperspace", "Inglesa");
-    }
+    }*/
 
     @Override
     public Agent getAgent(String login, String password, String kind) {
@@ -42,19 +42,19 @@ public class AgentDAODummy implements AgentDAO { //TODO - Si se quita lo de dumm
     //TODO - Creo que está mal, revisar el 'todo' de abajo
     //Se esta retornando el mismo objeto que se pasa como parametro.
     //Habria que retornar el devuelto por merge, que está en estado Persistent.
-    @Override
+    /*@Override
     public Agent updateInfo(Agent toUpdate) {
     	entityManager.merge(toUpdate);
         dummyAgent = toUpdate;
         return dummyAgent;
-    }
+    }*/
     
     //TODO - Revisar esto
     //Quizás haciendo que el metodo updateInfo haga esto, no hace falta el dummyAgent
     
-//    @Override
-//    public Agent updateInfo(Agent toUpdate) {
-//    	return entityManager.merge(toUpdate); //The merge method will return the merged object attached to the entityManager.
-//    }
+    @Override
+    public Agent updateInfo(Agent toUpdate) {
+    	return entityManager.merge(toUpdate); //The merge method will return the merged object attached to the entityManager.
+    }
     
 }
