@@ -89,6 +89,9 @@ Para arrancarlo todo y que funcione, se debe ejecutar el siguiente comando, esta
   ```
     
   Los campos anteriores son todos Strings.
+  El campo infoToChange puede tomar uno de los siguientes valores:
+	 `password, email, name, kind o location`
+	El campo newInfo contiene el nuevo valor que va a tener el campo a cambiar
       
   Si se ha encontrado el agente y se ha podido cambiar la informacion especificada, se devuelve un OK HTTP 200.
   En caso contrario, se devuelve un error HTTP 400.
