@@ -84,7 +84,7 @@ Para arrancarlo todo y que funcione, se debe ejecutar el siguiente comando, esta
     "password": password, 
     "kind": tipo de agente, 
     "infoToChange": tipo de agente, 
-    "kind": tipo de agente
+    "newInfo": tipo de agente
   }
   ```
     
