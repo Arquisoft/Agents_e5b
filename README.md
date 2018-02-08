@@ -36,7 +36,13 @@ Para arrancarlo todo y que funcione, se debe ejecutar el siguiente comando, esta
   El punto de entrada para obtener la información de un agente se encuentra en http://localhost:8080/user.
    
   Acepta peticiones POST en formato JSON con el contenido:
-  ``{"login": usuario, "password": password, "kind": tipo de agente}``
+  ```json
+  {
+    "login": usuario, 
+    "password": password, 
+    "kind": tipo de agente
+  }
+  ```
   Los tres campos anteriores son Strings.
    
   Puede devolver la informacion del agente tanto en formato JSON como en XML, 
@@ -45,33 +51,34 @@ Para arrancarlo todo y que funcione, se debe ejecutar el siguiente comando, esta
   Si los datos no son correctos se devuelve un error HTTP 404.
    
   #### Formato de retorn JSON
-     ```json
-     {
-       "name": Nombre,
-       "location": Coordenadas (opcional),
-       "email": Email,
-       "id": identificador,
-       "kind": tipo de usuario,
-       "kindCode": código numérico del tipo de usuario,
-     }
-     ```
+   ```json
+   {
+     "name": Nombre,
+     "location": Coordenadas (opcional),
+     "email": Email,
+     "id": identificador,
+     "kind": tipo de usuario,
+     "kindCode": código numérico del tipo de usuario
+   }
+   ```
+   
   ### Formato retorno XML
-     ```xml
-     <AgentMin>
-         <name>Nombre</name>
-         <location>Coordenadas (opcional)</location>
-         <email>Email</email>
-         <id>identificador</id>
-         <kind>tipo de usuario</kind>
-         <kindCode>código numérico del tipo de usuario</kindCode>
-     </AgentMin>
-     ```
+   ```xml
+   <AgentMin>
+       <name>Nombre</name>
+       <location>Coordenadas (opcional)</location>
+       <email>Email</email>
+       <id>identificador</id>
+       <kind>tipo de usuario</kind>
+       <kindCode>código numérico del tipo de usuario</kindCode>
+   </AgentMin>
+   ```
      
   ### Para cambiar los datos de un agente
   El punto de entrada para cambiar la información de un agente se encuentra en http://localhost:8080/changeInfo.
    
   Acepta peticiones POST en formato JSON con el contenido:
-  ``
+  ```json
   {
     "login": usuario, 
     "password": password, 
@@ -79,7 +86,7 @@ Para arrancarlo todo y que funcione, se debe ejecutar el siguiente comando, esta
     "infoToChange": tipo de agente, 
     "kind": tipo de agente
   }
-  ``
+  ```
     
   Los campos anteriores son todos Strings.
       
@@ -89,21 +96,21 @@ Para arrancarlo todo y que funcione, se debe ejecutar el siguiente comando, esta
 ## Interfaz HTML
   1. Escribir en el navegador: http://localhost:8080/
   2. Proporcionar los datos de login para los 3 agentes disponibles (uno de cada tipo):
-   * Login: 31668313G  Password: 1234  Kind: Person
-   * Login: A58818501  Password: 1234  Kind: Entity
-   * Login: 525695S    Password: 1234  Kind: Sensor
+     * Login: 31668313G  Password: 1234  Kind: Person
+     * Login: A58818501  Password: 1234  Kind: Entity
+     * Login: 525695S    Password: 1234  Kind: Sensor
   3. Aparecerá la pantalla que muestra los datos del agente
-   * Se puede ir a la pantalla de cambio de datos
-   * Se puede ir a la pantalla de inicio
+     * Se puede ir a la pantalla de cambio de datos
+     * Se puede ir a la pantalla de inicio
   4. Cambio de datos:
-   * Se puede cambiar la contraseña
-     * Escribir la contraseña antigua
-     * Escribir la contraseña nueva
-   * Se puede cambiar el email del agente, siempre que sea una dirección de email válida 
-   * Se puede cambiar el nombre del agente, siempre que no esté en blanco
-   * Se puede cambiar la localización del agente u omitirla
-   * Se puede cambiar el tipo del agente, siempre que sea uno de los 3 tipos válidos
-   * Se puede ir a la pantalla de vista de datos del agente
-   * Se puede ir a la pantalla de inicio
+     * Se puede cambiar la contraseña
+       * Escribir la contraseña antigua
+       * Escribir la contraseña nueva
+     * Se puede cambiar el email del agente, siempre que sea una dirección de email válida 
+     * Se puede cambiar el nombre del agente, siempre que no esté en blanco
+     * Se puede cambiar la localización del agente u omitirla
+     * Se puede cambiar el tipo del agente, siempre que sea uno de los 3 tipos válidos
+     * Se puede ir a la pantalla de vista de datos del agente
+     * Se puede ir a la pantalla de inicio
 
 
