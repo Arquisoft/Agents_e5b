@@ -110,7 +110,7 @@ public class WebControllerTest {
 	   Agent c = agentDAO.getAgent("31668313G", "1234", "Person");
 
 	   //Cambio de contraseña
-       mockMvc.perform(post("/changeInfo")
+       mockMvc.perform(post("/changePassword")
     	.param("password", "1234")
 		.param("newPassword", "new")
 		.sessionAttr("agent", c))
@@ -118,7 +118,7 @@ public class WebControllerTest {
     	.andExpect(view().name("view"));
 
 	   //Cambio de contraseña de nuevo por la original
-       mockMvc.perform(post("/changeInfo")
+       mockMvc.perform(post("/changePassword")
     	.param("password", "new")
 		.param("newPassword", "1234")
 		.sessionAttr("agent", c))
@@ -135,7 +135,7 @@ public class WebControllerTest {
 	   //Agent c = citizenDAO.getAgent("juan", "1234");
 	   Agent c = agentDAO.getAgent("31668313G", "1234", "Person");
 
-       mockMvc.perform(post("/changeInfo")
+       mockMvc.perform(post("/changePassword")
     	.param("password", "password")
 		.param("newPassword", "new")
 		.sessionAttr("agent", c))

@@ -182,15 +182,15 @@ public class WebController {
 	 * @param model
 	 * @return pagina siguiente
 	 */
-	@RequestMapping(value = "/changeInfo", method = RequestMethod.POST)
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
 	public String changePassword(HttpSession session, @RequestParam String password, @RequestParam String newPassword,
-			Model model) {//Tenemos que enviar el usuario (y quizas el kind)
+			Model model) {
 
-		Agent c = (Agent) session.getAttribute("agent");//No se debe recoger esto
-		if (c != null) {
-			if (c.getContraseña().equals(password) && !newPassword.isEmpty()) {
-				c.setContraseña(newPassword);
-				cc.updateInfo(c);
+		Agent agent = (Agent) session.getAttribute("agent");
+		if (agent != null) {
+			if (agent.getContraseña().equals(password) && !newPassword.isEmpty()) {
+				agent.setContraseña(newPassword);
+				cc.updateInfo(agent);
 				model.addAttribute("resultado", "Contrasena actualizada correctamente");
 				return "view";
 			}
@@ -213,11 +213,11 @@ public class WebController {
 	@RequestMapping(value = "/changeEmail", method = RequestMethod.POST)
 	public String changeEmail(HttpSession session, @RequestParam String email, Model model){
 
-		Agent c = (Agent) session.getAttribute("agent");
-		if(c != null){
+		Agent agent = (Agent) session.getAttribute("agent");
+		if(agent != null){
 			if(!email.isEmpty() && Check.validateEmail(email)){
-				c.setEmail(email);
-				cc.updateInfo(c);
+				agent.setEmail(email);
+				cc.updateInfo(agent);
 				model.addAttribute("resultado", "Agent email updated to: " + email);
 			}else{
 				model.addAttribute("resultado", "Agent email "+ email + "not valid.");
@@ -239,15 +239,15 @@ public class WebController {
 	@RequestMapping(value = "/changeName", method = RequestMethod.POST)
 	public String changeName(HttpSession session, @RequestParam String nombre, Model model){
 		
-		Agent c = (Agent) session.getAttribute("agent");
-		if(c != null){
-				c.setNombre(nombre);
-				cc.updateInfo(c);
-				model.addAttribute("resultado", "Agent name updated to: " + nombre);
-				
-				return "view";	
-			}
-			return "error";
+		Agent agent = (Agent) session.getAttribute("agent");
+		if(agent != null){
+			agent.setNombre(nombre);
+			cc.updateInfo(agent);
+			model.addAttribute("resultado", "Agent name updated to: " + nombre);
+			
+			return "view";	
+		}
+		return "error";
 	}
 	
 	/**
@@ -262,11 +262,11 @@ public class WebController {
 	@RequestMapping(value = "/changeKind", method = RequestMethod.POST)
 	public String changeKind(HttpSession session, @RequestParam String kind, Model model){
 
-		Agent c = (Agent) session.getAttribute("agent");
-		if(c!=null) {
+		Agent agent = (Agent) session.getAttribute("agent");
+		if(agent!=null) {
 			if(!kind.isEmpty() && Check.validateKind(kind)){
-				c.setTipo(kind);
-				cc.updateInfo(c);
+				agent.setTipo(kind);
+				cc.updateInfo(agent);
 				model.addAttribute("resultado", "Agent kind updated to: " + kind);
 			}else{
 				model.addAttribute("resultado", "Agent kind " + kind + " not valid.");
@@ -287,14 +287,14 @@ public class WebController {
 	@RequestMapping(value = "/changeLocalization", method = RequestMethod.POST)
 	public String changeLocalization(HttpSession session, @RequestParam String localization, Model model){
 
-		Agent c = (Agent) session.getAttribute("agent");
+		Agent agent = (Agent) session.getAttribute("agent");
 		
-		if(c!=null) {
+		if(agent!=null) {
 			if(localization.isEmpty())
 					localization="";
 			
-			c.setLocalizacion(localization);
-			cc.updateInfo(c);
+			agent.setLocalizacion(localization);
+			cc.updateInfo(agent);
 			model.addAttribute("resultado", "Agent localization updated to: " + localization);
 			return "view";
 		}
