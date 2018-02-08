@@ -24,7 +24,6 @@ import uo.asw.agents.util.DateUtil;
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
 public class UtilTest {
-
 	
 	private static String[] validEmails, invalidEmails;
 	private AgentMin agentMin;
@@ -48,8 +47,7 @@ public class UtilTest {
                 "test@example_101.com", "example@test@test.com",
                 "example@test.com.a5" };
     }
-	
-	
+
     @Before
     public void setUp() throws Exception {
     	agentMin = new AgentMin("111111H", "nombre", null, "usuario@gmail.com", "Agent", 1);
@@ -57,7 +55,6 @@ public class UtilTest {
 
 	@Test
 	public void newAgentMinTest() {
-		
 		String id = "222222J";
 		String nombre = "fernando";
 		String apellidos = "sanchez";
@@ -85,7 +82,6 @@ public class UtilTest {
 	
 	@Test
 	public void dateUtilTest() throws ParseException {
-		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		
 		//Ya ha cumplido años
@@ -103,30 +99,22 @@ public class UtilTest {
 	
 	@Test
 	public void checkTest(){
-		
 		assertTrue(Check.validateEmail("juan@gmail.com"));
 		assertTrue(Check.validateEmail("juan@uniovi.es"));
 		
 		assertFalse(Check.validateEmail("usuario"));
 		assertFalse(Check.validateEmail("usuario@gmail"));
 		assertFalse(Check.validateEmail("usuario.com"));
-
 	}
-	
-	
-	 
- 
+
     /**
      * Test para email valido
      */
     @Test
     public void validEmailTest() {
- 
         for (String temp : validEmails) {
- 
             assertTrue(Check.validateEmail(temp));
         }
- 
     }
  
     /**
@@ -134,11 +122,9 @@ public class UtilTest {
      */
     @Test
     public void invalidEmailTest() {
- 
         for (String temp : invalidEmails) {
- 
           assertFalse(Check.validateEmail(temp));
         }
- 
     }
+    
 }

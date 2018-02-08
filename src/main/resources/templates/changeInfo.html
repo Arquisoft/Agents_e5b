@@ -64,17 +64,17 @@
 			</tr>
 		</table>
 	</form>
-	<h2>Change Localization</h2>
-	<form method="POST" action="changeLocalization">
+	<h2>Change Location</h2>
+	<form method="POST" action="changeLocation">
 		<table>
 			<tr>
 				<td>Localization:</td>
-				<td><input type="text" name="localization"
+				<td><input type="text" name="location"
 					 th:value="${session.agent.localizacion}" th:placeholder = "${session.agent.localizacion}"/></td>
 			</tr>
 			<tr>
-				<td colspan="2"><input type="submit" name="updateLocalization"
-					value="Update localization" /></td>
+				<td colspan="2"><input type="submit" name="updateLocation"
+					value="Update location" /></td>
 			</tr>
 		</table>
 	</form>

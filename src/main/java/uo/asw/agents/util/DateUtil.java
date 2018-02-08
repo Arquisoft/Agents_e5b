@@ -32,6 +32,6 @@ public class DateUtil {
 			// Ya ha cumplido los años
 			return fechaActual.get(Calendar.YEAR)
 					- nacimiento.get(Calendar.YEAR);
-
 	}
+	
 }

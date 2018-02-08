@@ -159,26 +159,5 @@ public class DBTest {
        	
        	assertEquals("1234", agent.getContraseña()); 	
     }
-    
-    //El test original (adaptado a agents) hacia esto, es decir, comprobaba que el objeto agent que esta en estado detached
-    //tiene la misma contraseña que se le acaba de poner en el metodo, lo cual obviamente se va a cumplir.
-    //Deberia recuperar el objeto devuelto por updateInfo para actualizarse con el contenido de la BD.
-    //Esto es lo que hago en el metodo de arriba
-    
-//    public void testUpdatePassword() throws Exception {
-//    	Agent agent = citizenDAO.getAgent("31668313G", "1234", "Person");
-//    	
-//    	//Cambio de contraseña
-//    	agent.setContraseña("newPassword");
-//       	citizenDAO.updateInfo(agent);
-//       
-//       	assertEquals("newPassword", agent.getContraseña());
-//       	
-//       	//Cambio de contraseña por la original
-//       	agent.setContraseña("1234");
-//       	citizenDAO.updateInfo(agent);
-//       	
-//       	assertEquals("1234", agent.getContraseña(); 	
-//    }
 
 }

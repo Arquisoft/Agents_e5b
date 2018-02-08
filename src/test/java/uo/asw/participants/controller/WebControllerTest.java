@@ -34,8 +34,6 @@ public class WebControllerTest {
     private MockMvc mockMvc;
     
     @Autowired
-    //MFA
-    //private AgentDAO citizenDAO;
     private AgentDAO agentDAO;
      
     @Before
@@ -44,7 +42,11 @@ public class WebControllerTest {
     }
     
     @Test
-	 //usuario y contraseña correctos
+	/**
+	 * Test que comprueba el funcionamiento de la pagina web
+	 * cuando el usuario y la contraseña son correctos
+	 * @throws Exception
+	 */
     public void showInfoTest1() throws Exception {
     	
       mockMvc.perform(post("/info")
@@ -59,7 +61,11 @@ public class WebControllerTest {
 
     
     @Test
-    //usuario incorrecto
+    /**
+	 * Test que comprueba el funcionamiento de la pagina web
+	 * cuando el usuario es incorrecto
+	 * @throws Exception
+	 */
     public void showInfoTest2() throws Exception {
     	
         mockMvc.perform(post("/info")
@@ -71,7 +77,11 @@ public class WebControllerTest {
     }
     
     @Test
-    //contraseña incorrecta
+    /**
+	 * Test que comprueba el funcionamiento de la pagina web
+	 * cuando la contraseña es incorrecta
+	 * @throws Exception
+	 */
     public void showInfoTest3() throws Exception {
 
        	mockMvc.perform(post("/info")
@@ -83,7 +93,11 @@ public class WebControllerTest {
     }
     
     @Test
-    //login, password y kind vacios
+    /**
+	 * Test que comprueba el funcionamiento de la pagina web
+	 * cuando login, password y kind son vacios
+	 * @throws Exception
+	 */
     public void showInfoTest4() throws Exception {
 
        	mockMvc.perform(post("/info")
@@ -95,6 +109,11 @@ public class WebControllerTest {
     }
     
    @Test
+   /**
+    * Test que comprueba que al hacer una peticion a / nos devuelve
+    * la pagina de login
+    * @throws Exception
+    */
    public void showViewTest() throws Exception {
        mockMvc.perform(get("/"))
            .andExpect(status().isOk())
@@ -103,10 +122,11 @@ public class WebControllerTest {
     
    
    @Test
+   /**
+    * Test que comprueba el cambio de contraseña
+    * @throws Exception
+    */
    public void changePasswordTest1() throws Exception {
-   	
-	   //MFA
-	   //Agent c = citizenDAO.getAgent("juan", "1234");
 	   Agent c = agentDAO.getAgent("31668313G", "1234", "Person");
 
 	   //Cambio de contraseña
@@ -124,15 +144,15 @@ public class WebControllerTest {
 		.sessionAttr("agent", c))
         .andExpect(status().isOk())
      	.andExpect(view().name("view"));
-       
    }
    
    @Test
-   //Contraseña incorrecta
+   /**
+    * Test que comprueba el cambio de contraseña, cuando 
+    * la contraseña es incorrecta
+    * @throws Exception
+    */
    public void changePasswordTest2() throws Exception {
-   	
-	   //MFA
-	   //Agent c = citizenDAO.getAgent("juan", "1234");
 	   Agent c = agentDAO.getAgent("31668313G", "1234", "Person");
 
        mockMvc.perform(post("/changePassword")
@@ -144,10 +164,11 @@ public class WebControllerTest {
    }
    
    @Test
+   /**
+    * Test que comprueba el cambio de email
+    * @throws Exception
+    */
    public void changeEmailTest1() throws Exception {
-   	
-	   //MFA
-	   //Agent c = citizenDAO.getAgent("juan", "1234");
 	   Agent c = agentDAO.getAgent("31668313G", "1234", "Person");
 
 	   //Cambio de email

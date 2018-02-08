@@ -37,12 +37,6 @@ public class Agent {
 	@NotNull
 	private String tipo;
 	
-	
-	
-//	//Entiendo que esto es kindCode 
-//	@NotNull
-//	private int tipoCodigo;
-	
 	public Agent(){}
 
 	public Agent(String nombreUsuario, String contraseña,
@@ -55,7 +49,6 @@ public class Agent {
 		this.email = email;
 		this.localizacion = localizacion;
 		this.tipo = tipo;
-		//this.tipoCodigo=tipoCodigo;
 	}
 
 
@@ -107,14 +100,6 @@ public class Agent {
 		this.tipo=tipo;
 	}
 	
-//	public int getTipoCodigo(){
-//		return tipoCodigo;
-//	}
-//	
-//	public void setTipoCodigo(int tipoCodigo){
-//		this.tipoCodigo=tipoCodigo;
-//	}
-	
 	public Long getId(){
 		return id;
 	}
@@ -160,12 +145,7 @@ public class Agent {
 				+ "nombre=" + nombre + ", "
 				+ "email=" + email + ", "
 				+ "localizacion=" + localizacion + ", "
-				+ "tipo=" + tipo + ", "
-				//+ "tipoCodigo=" + tipoCodigo
-				+ "]";
-				
+				+ "tipo=" + tipo + "]";
 	}
-	
-	
 
 }

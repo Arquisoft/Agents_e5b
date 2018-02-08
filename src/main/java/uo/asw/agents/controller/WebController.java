@@ -26,30 +26,8 @@ public class WebController {
 	 */
 	@RequestMapping(value = { "/", "/portal" }, method = RequestMethod.GET)
 	public String showView(Model model) {
-		// model.addAttribute("nombre","luis");
 		return "log";
 	}
-
-	// @Autowired
-	// CitzenController cc;
-	//
-	// @RequestMapping(value = "/info", method = RequestMethod.GET, params = {
-	// "user", "password" })
-	// public ModelAndView showInfo(@RequestParam(value = "user") String
-	// username,
-	// @RequestParam(value = "password") String password) {
-	// Map<String, Object> mp = new HashMap<>();
-	// mp.put("login", username);
-	// mp.put("password", password);
-	// ResponseEntity<CitizenMin> c = cc.getCitzen(mp);
-	// if(c.getStatusCode()!=HttpStatus.OK)
-	// return new ModelAndView("error");
-	// ModelAndView mv = new ModelAndView("view");
-	// mv.addObject("name",c.getBody().getFirstName());
-	// mv.addObject("mail",c.getBody().getEmail());
-	// // TODO: añadir el resto de info del citizen.
-	// return mv;
-	// }
 
 	@Autowired
 	private AgentDAO cc;
@@ -76,11 +54,9 @@ public class WebController {
 		
 		if (login != null && password != null && kind != null) {
 			
-					
-			c = cc.getAgent(login, password, kind);//TODO - Mal, no debe llamar a getAgent, sino al servicio web
+			c = cc.getAgent(login, password, kind);
 			
 			if (c != null) {
-				//TODO - esta mal
 				int kindCode = CSVKindsReader.getKindCodeByKind(c.getTipo());
 				
 				session.setAttribute("agent",c);
@@ -92,58 +68,6 @@ public class WebController {
 		return "error";
 
 	}
-	
-// TODO - INTENTO DE LLAMAR AL SERVICIO WEB Y RECUPERAR LOS DATOS, PARA GUARDARLOS EN SESION EN LUGAR DE GUARDAR UN AGENT
-//	/**
-//	 * Recibe los datos de login del usuario, busca si exite ese usuario y en
-//	 * caso de exitir pasa a la siguiente página que muestra la informacion. 
-//	 * En caso contrario muestra la página de error
-//	 * 
-//	 * @param session
-//	 *            mantiene la sesion
-//	 * @param user
-//	 *            nombre del login
-//	 * @param password
-//	 *            contresena del usuario
-//	 * @param model
-//	 * @return view si exito, error si fracaso
-//	 */
-//	@RequestMapping(value = "/info", method = RequestMethod.POST)
-//	public String showInfo(HttpSession session, @RequestParam String login, @RequestParam String password, @RequestParam String kind, Model model) {
-//		AgentMin agentInfo = null;
-//		
-//		if (login != null && password != null && kind != null) {
-//			//Preparamos los parametros de la petición post
-//	        Map<String, Object> payload = new HashMap<String, Object>() {
-//				private static final long serialVersionUID = 1L;
-//
-//				{
-//	                put("login", login);
-//	                put("password", password);
-//	                put("kind", kind);
-//	            }
-//	        };
-//	        
-//	        AgentControllerImpl agentController = new AgentControllerImpl();
-//			agentInfo = agentController.getAgent(payload).getBody(); 
-//			
-//			if (agentInfo != null) {
-//				session.setAttribute("nombre",agentInfo.getName());
-//				session.setAttribute("identificador",agentInfo.getId());
-//				session.setAttribute("localizacion",agentInfo.getLocation());
-//				session.setAttribute("email",agentInfo.getEmail());
-//				session.setAttribute("tipo",agentInfo.getKind());
-//				session.setAttribute("tipocodigo",agentInfo.getKindCode());
-//				model.addAttribute("resultado", "Bienvenid@ " + agentInfo.getName());
-//				return "view";
-//			}
-//		}
-//		return "error";
-//
-//	}
-	
-	
-	
 
 	/**
 	 * Acceso a la página que modifica los datos del usuario
@@ -280,22 +204,22 @@ public class WebController {
 	 * Modifica la localización del usuario en sesión y muestra el resultado sobre el HTML view, o redirige a la 
 	 * pagina de error en caso de que no se encuentre el usuario en sesion
 	 * @param session objeto session del usuario registrado
-	 * @param localization nueva localización del usuario
+	 * @param location nueva localización del usuario
 	 * @param model
 	 * @return view si el usuario esta registrado, error si el usuario no esta registrado
 	 */
-	@RequestMapping(value = "/changeLocalization", method = RequestMethod.POST)
-	public String changeLocalization(HttpSession session, @RequestParam String localization, Model model){
+	@RequestMapping(value = "/changeLocation", method = RequestMethod.POST)
+	public String changeLocation(HttpSession session, @RequestParam String location, Model model){
 
 		Agent agent = (Agent) session.getAttribute("agent");
 		
 		if(agent!=null) {
-			if(localization.isEmpty())
-					localization="";
+			if(location.isEmpty())
+					location="";
 			
-			agent.setLocalizacion(localization);
+			agent.setLocalizacion(location);
 			cc.updateInfo(agent);
-			model.addAttribute("resultado", "Agent localization updated to: " + localization);
+			model.addAttribute("resultado", "Agent localization updated to: " + location);
 			return "view";
 		}
 		return "error";
