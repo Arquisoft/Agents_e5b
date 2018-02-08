@@ -26,60 +26,84 @@ Skeleton of participants module
 
 
 # Funcionamiento:
-## Interfaz HTML
-1. Escribir en el navegador: http://localhost:8080/
-2. Proporcionar los datos de login para los 3 agentes disponibles (uno de cada tipo):
- * Login: 31668313G  Password: 1234  Kind: Person
- * Login: A58818501  Password: 1234  Kind: Entity
- * Login: 525695S    Password: 1234  Kind: Sensor
-3. Aparecerá la pantalla que muestra los datos del agente
- * Se puede ir a la pantalla de cambio de datos
- * Se puede ir a la pantalla de inicio
-4. Cambio de datos:
- * Se puede cambiar la contraseña
-   * Escribir la contraseña antigua
-   * Escribir la contraseña nueva
- * Se puede cambiar el email del agente, siempre que sea una dirección de email válida 
- * Se puede cambiar el nombre del agente, siempre que no esté en blanco
- * Se puede cambiar la localización del agente u omitirla
- * Se puede cambiar el tipo del agente, siempre que sea uno de los 3 tipos válidos
- * Se puede ir a la pantalla de vista de datos del agente
- * Se puede ir a la pantalla de inicio
+
+Para arrancarlo todo y que funcione, se debe ejecutar el siguiente comando, estando situado en la carpeta Agents_e5b:
+``mvn spring-boot:run``
 
 ## Servicio REST
-   El punto de entrada se encuentra en http://localhost:8080/user.
+
+### Para obtener los datos de un agente
+  El punto de entrada para obtener la información de un agente se encuentra en http://localhost:8080/user.
    
-   Acepta peticiones POST en formato JSON con el contenido:
-   ``{"login": usuario, "password": password, "kind": tipo de agente}``
+  Acepta peticiones POST en formato JSON con el contenido:
+  ``{"login": usuario, "password": password, "kind": tipo de agente}``
+  Los tres campos anteriores son Strings.
    
-   Devuelve la informacion del agente si las credenciales en formato 
-   JSON o XML segun se indique en la cabecera de la petición.
+  Puede devolver la informacion del agente tanto en formato JSON como en XML, 
+  según se indique en la cabecera de la petición.
    
-   Si los datos no son correctos se devuelve un error HTTP 404.
-   Si los parametros no son correctos se devuelve un codigo de error HTTP 406.
+  Si los datos no son correctos se devuelve un error HTTP 404.
    
-### Formato de retorn JSON
-   ```json
-   {
-     "name": Nombre,
-     "location": Coordenadas (opcional),
-     "email": Email,
-     "id": identificador,
-     "kind": tipo de usuario,
-     "kindCode": código numérico del tipo de usuario,
-   }
-   ```
-### Formato retorno XML
-   ```xml
-   <AgentMin>
-       <name>Nombre</name>
-       <location>Coordenadas (opcional)</location>
-       <email>Email</email>
-       <id>identificador</id>
-       <kind>tipo de usuario</kind>
-       <kindCode>código numérico del tipo de usuario</kindCode>
-   </AgentMin>
-   ```
+  #### Formato de retorn JSON
+     ```json
+     {
+       "name": Nombre,
+       "location": Coordenadas (opcional),
+       "email": Email,
+       "id": identificador,
+       "kind": tipo de usuario,
+       "kindCode": código numérico del tipo de usuario,
+     }
+     ```
+  ### Formato retorno XML
+     ```xml
+     <AgentMin>
+         <name>Nombre</name>
+         <location>Coordenadas (opcional)</location>
+         <email>Email</email>
+         <id>identificador</id>
+         <kind>tipo de usuario</kind>
+         <kindCode>código numérico del tipo de usuario</kindCode>
+     </AgentMin>
+     ```
+     
+  ### Para cambiar los datos de un agente
+  El punto de entrada para cambiar la información de un agente se encuentra en http://localhost:8080/changeInfo.
    
+  Acepta peticiones POST en formato JSON con el contenido:
+  ``
+  {
+    "login": usuario, 
+    "password": password, 
+    "kind": tipo de agente, 
+    "infoToChange": tipo de agente, 
+    "kind": tipo de agente
+  }
+  ``
+    
+  Los campos anteriores son todos Strings.
+      
+  Si se ha encontrado el agente y se ha podido cambiar la informacion especificada, se devuelve un OK HTTP 200.
+  En caso contrario, se devuelve un error HTTP 400.
+   
+## Interfaz HTML
+  1. Escribir en el navegador: http://localhost:8080/
+  2. Proporcionar los datos de login para los 3 agentes disponibles (uno de cada tipo):
+   * Login: 31668313G  Password: 1234  Kind: Person
+   * Login: A58818501  Password: 1234  Kind: Entity
+   * Login: 525695S    Password: 1234  Kind: Sensor
+  3. Aparecerá la pantalla que muestra los datos del agente
+   * Se puede ir a la pantalla de cambio de datos
+   * Se puede ir a la pantalla de inicio
+  4. Cambio de datos:
+   * Se puede cambiar la contraseña
+     * Escribir la contraseña antigua
+     * Escribir la contraseña nueva
+   * Se puede cambiar el email del agente, siempre que sea una dirección de email válida 
+   * Se puede cambiar el nombre del agente, siempre que no esté en blanco
+   * Se puede cambiar la localización del agente u omitirla
+   * Se puede cambiar el tipo del agente, siempre que sea uno de los 3 tipos válidos
+   * Se puede ir a la pantalla de vista de datos del agente
+   * Se puede ir a la pantalla de inicio
 
 
