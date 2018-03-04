@@ -10,4 +10,4 @@
 - [ ] Comprobar que no se hace referencia a Citizen en ningún lugar de la documentación (y del código)
 - [ ] Indicar la existencia del .csv maestro en la documentación
 - [ ] Poner un hipervínculo del Atributo/Escenario en la Just. de las decisiones al punto donde se definen
-- [ ] Todos los atributos y restricciones han de estar en alguna vista
+- [x] Todos los atributos y restricciones han de estar en alguna vista
