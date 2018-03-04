@@ -79,24 +79,6 @@ public class UtilTest {
 		assertEquals(location, agentMin.getLocation());
 	}
 	
-	
-	@Test
-	public void dateUtilTest() throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		
-		//Ya ha cumplido años
-		String dateString1 = "10-01-1990";
-		Date date1 = sdf.parse(dateString1);
-		int edad1 = DateUtil.getYears(date1); System.out.println("\n\nEDAD:"+edad1+"\n\n");
-		assertEquals(28, edad1);
-
-		//Aun no ha cumplido años
-		String dateString2 = "10-02-1990";
-		Date date2 = sdf.parse(dateString2);
-		int edad2 = DateUtil.getYears(date2); System.out.println("\n\nEDAD:"+edad2+"\n\n");
-		assertEquals(27, edad2);
-	}
-	
 	@Test
 	public void checkTest(){
 		assertTrue(Check.validateEmail("juan@gmail.com"));
