@@ -12,7 +12,7 @@ import uo.asw.dbManagement.model.Agent;
 public class InsertAgents {
 	
 	@Autowired
-	private AgentsRepository agentsRepository;
+	private AgentsService agentsService;
 	
 	@SuppressWarnings("serial")
 	@PostConstruct
@@ -21,8 +21,8 @@ public class InsertAgents {
 		Agent agent2 = new Agent("A58818501", "1234", "Entity");
 		Agent agent3 = new Agent("525695S", "1234", "Sensor");
 		
-		agentsRepository.save(agent1);
-		agentsRepository.save(agent2);
-		agentsRepository.save(agent3);
+		agentsService.addAgent(agent1);
+		agentsService.addAgent(agent2);
+		agentsService.addAgent(agent3);
 	}
 }

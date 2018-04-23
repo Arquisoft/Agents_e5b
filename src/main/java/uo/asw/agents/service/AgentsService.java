@@ -1,6 +1,7 @@
 package uo.asw.agents.service;
 
 import uo.asw.agents.util.AgentMin;
+import uo.asw.dbManagement.model.Agent;
 
 public interface AgentsService {
 
@@ -86,5 +87,13 @@ public interface AgentsService {
 	 * @return
 	 */
 	boolean changeLocation(String login, String password, String kind, String newLocation);
+	
+	//NUEVOS
+	
+	void addAgent(Agent agent);
+	Agent getAgent(String identifier, String password, String kind);
+	
+	String updatePassword(String password,String identifier);
+	void updateInfo(Agent agent,String identifier);
 	
 }

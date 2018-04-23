@@ -7,10 +7,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import uo.asw.Application;
+import uo.asw.agents.service.AgentsService;
 import uo.asw.dbManagement.AgentsRepository;
 import uo.asw.dbManagement.model.Agent;
 
@@ -22,7 +24,10 @@ public class DBTest {
 
 	
 	@Autowired
-    private AgentsRepository agentDAO;
+    private AgentsService agentDAO;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Test
 	/**
@@ -35,15 +40,18 @@ public class DBTest {
     	Agent sensor = agentDAO.getAgent("525695S", "1234", "Sensor");
 
 		assertEquals("31668313G", person.getIdentifier());
-		assertEquals("1234", person.getPassword());
+		//assertEquals("1234", person.getPassword());
+		assertEquals(bCryptPasswordEncoder.matches("1234", person.getPassword()),true);
 		assertEquals("Person", person.getKind());
 		
 		assertEquals("A58818501", entity.getIdentifier());
-		assertEquals("1234", entity.getPassword());
+		//assertEquals("1234", entity.getPassword());
+		assertEquals(bCryptPasswordEncoder.matches("1234", entity.getPassword()),true);
 		assertEquals("Entity", entity.getKind());
 		
 		assertEquals("525695S", sensor.getIdentifier());
-		assertEquals("1234", sensor.getPassword());
+		//assertEquals("1234", sensor.getPassword());
+		assertEquals(bCryptPasswordEncoder.matches("1234", sensor.getPassword()),true);
 		assertEquals("Sensor", sensor.getKind());
     }
     
@@ -151,14 +159,16 @@ public class DBTest {
     	agent.setPassword("newPassword");
        	agentDAO.updatePassword(agent.getPassword(),agent.getIdentifier());
         agent=agentDAO.getAgent(agent.getIdentifier(), agent.getPassword(), agent.getKind());
-       	assertEquals("newPassword", agent.getPassword());
-       	
+       	//assertEquals("newPassword", agent.getPassword());
+       	assertEquals(bCryptPasswordEncoder.matches("newPassword", agent.getPassword()),true);
+
        	//Cambio de contraseña por la original
        	agent.setPassword("1234");
        	agentDAO.updatePassword(agent.getPassword(),agent.getIdentifier());
         agent=agentDAO.getAgent(agent.getIdentifier(), agent.getPassword(), agent.getKind());
         
-       	assertEquals("1234", agent.getPassword()); 	
+       	//assertEquals("1234", agent.getPassword());
+    	assertEquals(bCryptPasswordEncoder.matches("1234", agent.getPassword()),true);
     }
 
 }

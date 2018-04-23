@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import uo.asw.Application;
+import uo.asw.agents.service.AgentsService;
 import uo.asw.dbManagement.AgentsRepository;
 import uo.asw.dbManagement.model.Agent;
 import uo.asw.parser.reader.CSVKindsReader;
@@ -65,7 +66,7 @@ public class AgentControllerTest {
             Charset.forName("utf8"));
 
     @Autowired
-    private AgentsRepository agentDAO;
+    private AgentsService agentDAO;
 
     @Before
     public void setUp() throws Exception {

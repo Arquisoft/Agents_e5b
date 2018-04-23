@@ -1,6 +1,7 @@
 package uo.asw.agents.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import uo.asw.agents.util.AgentMin;
@@ -15,10 +16,13 @@ public class AgentsServiceImpl implements AgentsService {
 	@Autowired
 	private AgentsRepository agentDAO;
 	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	@Override
 	public AgentMin getAgentMin(String login, String password, String kind) {
 		//Recuperamos el agente de la BD
-		Agent agent = agentDAO.getAgent(login, password,kind);
+		Agent agent = getAgent(login, password,kind);
 		
 		if (agent != null) {
 			//Si el agente existe, guardamos sus datos en un AgentMin y lo retornamos
@@ -96,6 +100,39 @@ public class AgentsServiceImpl implements AgentsService {
 			return true;
 		}
 		return false;
+	}
+	
+	//Nuevos metodos
+	
+	@Override
+	public void addAgent(Agent agent) {
+		agent.setPassword(bCryptPasswordEncoder.encode(agent.getPassword()));
+		agentDAO.save(agent);
+	}
+	
+	@Override
+	public Agent getAgent(String identifier, String password, String kind) {
+		
+		Agent agent = agentDAO.findByIdentifier(identifier);
+		if(agent!=null) {
+			if(bCryptPasswordEncoder.matches(password, agent.getPassword()) &&
+					agent.getKind().equals(kind)) {
+				return agent;
+			}
+		}
+		return null;
+	}
+	
+	@Override
+	public String updatePassword(String password,String identifier) {
+		password=bCryptPasswordEncoder.encode(password);
+		agentDAO.updatePassword(password, identifier);
+		return password;
+	}
+	
+	@Override
+	public void updateInfo(Agent agent,String identifier) {
+		agentDAO.updateInfo(agent, identifier);
 	}
 
 }

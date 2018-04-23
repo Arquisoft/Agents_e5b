@@ -3,13 +3,14 @@ package uo.asw.agents.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import uo.asw.agents.service.AgentsService;
 import uo.asw.agents.util.Check;
 import uo.asw.dbManagement.AgentsRepository;
 import uo.asw.dbManagement.model.Agent;
@@ -30,7 +31,10 @@ public class WebController {
 	}
 
 	@Autowired
-	private AgentsRepository cc;
+	private AgentsService cc;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	/**
 	 * Recibe los datos de login del usuario, busca si exite ese usuario y en
@@ -110,11 +114,14 @@ public class WebController {
 
 		Agent agent = (Agent) session.getAttribute("agent");
 		if (agent != null) {
-			if (agent.getPassword().equals(password) && !newPassword.isEmpty()) {
+			if(bCryptPasswordEncoder.matches(password, agent.getPassword()) && !newPassword.isEmpty()) {
+				
 				agent.setPassword(newPassword);
-				cc.updatePassword(agent.getPassword(),agent.getIdentifier());
+				String newPassEncrypt=cc.updatePassword(agent.getPassword(),agent.getIdentifier());
+				agent.setPassword(newPassEncrypt);
 				model.addAttribute("resultado", "Contrasena actualizada correctamente");
 				return "view";
+
 			}
 			return "errorContrasena";
 		}
