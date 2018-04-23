@@ -16,7 +16,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import uo.asw.Application;
-import uo.asw.dbManagement.AgentDAO;
+import uo.asw.dbManagement.AgentsRepository;
 import uo.asw.dbManagement.model.Agent;
 import uo.asw.parser.reader.CSVKindsReader;
 
@@ -65,7 +65,7 @@ public class AgentControllerTest {
             Charset.forName("utf8"));
 
     @Autowired
-    private AgentDAO agentDAO;
+    private AgentsRepository agentDAO;
 
     @Before
     public void setUp() throws Exception {
@@ -96,17 +96,17 @@ public class AgentControllerTest {
         //coinciden con los del agente obtenido de la BD
         
         //Dado el kind del agente, sacamos su kindCode
-        int kindCode = CSVKindsReader.getKindCodeByKind(agent.getTipo());
+        int kindCode = CSVKindsReader.getKindCodeByKind(agent.getKind());
         
         mockMvc.perform(post("/user")
                 .content(this.json(payload))
                 .contentType(JSONContentType))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$['name']", is(agent.getNombre())))
-                .andExpect(jsonPath("$['location']", is(agent.getLocalizacion())))
+                .andExpect(jsonPath("$['name']", is(agent.getName())))
+                .andExpect(jsonPath("$['location']", is(agent.getLocation())))
                 .andExpect(jsonPath("$['email']", is(agent.getEmail())))
-                .andExpect(jsonPath("$['id']", is(agent.getIdentificador())))
-                .andExpect(jsonPath("$['kind']", is(agent.getTipo())))
+                .andExpect(jsonPath("$['id']", is(agent.getIdentifier())))
+                .andExpect(jsonPath("$['kind']", is(agent.getKind())))
                 .andExpect(jsonPath("$['kindCode']", is(kindCode)));
     }
 
@@ -271,19 +271,19 @@ public class AgentControllerTest {
         //coinciden con los del agente obtenido de la BD
         
         //Dado el kind del agente, sacamos su kindCode
-        int kindCode = CSVKindsReader.getKindCodeByKind(agent.getTipo());
-        String localizacion = agent.getLocalizacion() != null? agent.getLocalizacion() : "";
+        int kindCode = CSVKindsReader.getKindCodeByKind(agent.getKind());
+        String localizacion = agent.getLocation() != null? agent.getLocation() : "";
         
         mockMvc.perform(post("/user")
                 .content(this.json(payload))
                 .contentType(JSONContentType)
                 .accept(MediaType.APPLICATION_XML))
                 .andExpect(status().isOk()) 
-                .andExpect(xpath("//name").string(agent.getNombre()))
+                .andExpect(xpath("//name").string(agent.getName()))
                 .andExpect(xpath("//location").string(localizacion))
                 .andExpect(xpath("//email").string(agent.getEmail()))
-                .andExpect(xpath("//id").string(agent.getIdentificador()))
-                .andExpect(xpath("//kind").string(agent.getTipo()))
+                .andExpect(xpath("//id").string(agent.getIdentifier()))
+                .andExpect(xpath("//kind").string(agent.getKind()))
                 .andExpect(xpath("//kindCode").string(String.valueOf(kindCode)));
     }
     
@@ -311,17 +311,17 @@ public class AgentControllerTest {
         //coinciden con los del agente obtenido de la BD
         
         //Dado el kind del agente, sacamos su kindCode
-        int kindCode = CSVKindsReader.getKindCodeByKind(agent.getTipo());
+        int kindCode = CSVKindsReader.getKindCodeByKind(agent.getKind());
         
         mockMvc.perform(post("/user")
                 .content(this.json(payload))
                 .contentType(JSONContentType))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$['name']", is(agent.getNombre())))
-                .andExpect(jsonPath("$['location']", is(agent.getLocalizacion())))
+                .andExpect(jsonPath("$['name']", is(agent.getName())))
+                .andExpect(jsonPath("$['location']", is(agent.getLocation())))
                 .andExpect(jsonPath("$['email']", is(agent.getEmail())))
-                .andExpect(jsonPath("$['id']", is(agent.getIdentificador())))
-                .andExpect(jsonPath("$['kind']", is(agent.getTipo())))
+                .andExpect(jsonPath("$['id']", is(agent.getIdentifier())))
+                .andExpect(jsonPath("$['kind']", is(agent.getKind())))
                 .andExpect(jsonPath("$['kindCode']", is(kindCode)));
     }
     
@@ -349,19 +349,19 @@ public class AgentControllerTest {
         //coinciden con los del agente obtenido de la BD
         
       //Dado el kind del agente, sacamos su kindCode
-        int kindCode = CSVKindsReader.getKindCodeByKind(agent.getTipo());
-        String localizacion = agent.getLocalizacion() != null? agent.getLocalizacion() : "";
+        int kindCode = CSVKindsReader.getKindCodeByKind(agent.getKind());
+        String localizacion = agent.getLocation() != null? agent.getLocation() : "";
         
         mockMvc.perform(post("/user")
                 .content(this.json(payload))
                 .contentType(JSONContentType)
                 .accept(MediaType.APPLICATION_XML))
                 .andExpect(status().isOk()) 
-                .andExpect(xpath("//name").string(agent.getNombre()))
+                .andExpect(xpath("//name").string(agent.getName()))
                 .andExpect(xpath("//location").string(localizacion))
                 .andExpect(xpath("//email").string(agent.getEmail()))
-                .andExpect(xpath("//id").string(agent.getIdentificador()))
-                .andExpect(xpath("//kind").string(agent.getTipo()))
+                .andExpect(xpath("//id").string(agent.getIdentifier()))
+                .andExpect(xpath("//kind").string(agent.getKind()))
                 .andExpect(xpath("//kindCode").string(String.valueOf(kindCode)));
     }
 

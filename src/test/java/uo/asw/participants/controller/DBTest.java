@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import uo.asw.Application;
-import uo.asw.dbManagement.AgentDAO;
+import uo.asw.dbManagement.AgentsRepository;
 import uo.asw.dbManagement.model.Agent;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -22,7 +22,7 @@ public class DBTest {
 
 	
 	@Autowired
-    private AgentDAO agentDAO;
+    private AgentsRepository agentDAO;
 	
 	@Test
 	/**
@@ -34,17 +34,17 @@ public class DBTest {
     	Agent entity = agentDAO.getAgent("A58818501", "1234", "Entity");
     	Agent sensor = agentDAO.getAgent("525695S", "1234", "Sensor");
 
-		assertEquals("31668313G", person.getNombreUsuario());
-		assertEquals("1234", person.getContraseña());
-		assertEquals("Person", person.getTipo());
+		assertEquals("31668313G", person.getIdentifier());
+		assertEquals("1234", person.getPassword());
+		assertEquals("Person", person.getKind());
 		
-		assertEquals("A58818501", entity.getNombreUsuario());
-		assertEquals("1234", entity.getContraseña());
-		assertEquals("Entity", entity.getTipo());
+		assertEquals("A58818501", entity.getIdentifier());
+		assertEquals("1234", entity.getPassword());
+		assertEquals("Entity", entity.getKind());
 		
-		assertEquals("525695S", sensor.getNombreUsuario());
-		assertEquals("1234", sensor.getContraseña());
-		assertEquals("Sensor", sensor.getTipo());
+		assertEquals("525695S", sensor.getIdentifier());
+		assertEquals("1234", sensor.getPassword());
+		assertEquals("Sensor", sensor.getKind());
     }
     
     @Test
@@ -148,16 +148,17 @@ public class DBTest {
     	Agent agent = agentDAO.getAgent("31668313G", "1234", "Person");
     	
     	//Cambio de contraseña
-    	agent.setContraseña("newPassword");
-       	agent = agentDAO.updateInfo(agent);
-       
-       	assertEquals("newPassword", agent.getContraseña());
+    	agent.setPassword("newPassword");
+       	agentDAO.updatePassword(agent.getPassword(),agent.getIdentifier());
+        agent=agentDAO.getAgent(agent.getIdentifier(), agent.getPassword(), agent.getKind());
+       	assertEquals("newPassword", agent.getPassword());
        	
        	//Cambio de contraseña por la original
-       	agent.setContraseña("1234");
-       	agent = agentDAO.updateInfo(agent);
-       	
-       	assertEquals("1234", agent.getContraseña()); 	
+       	agent.setPassword("1234");
+       	agentDAO.updatePassword(agent.getPassword(),agent.getIdentifier());
+        agent=agentDAO.getAgent(agent.getIdentifier(), agent.getPassword(), agent.getKind());
+        
+       	assertEquals("1234", agent.getPassword()); 	
     }
 
 }

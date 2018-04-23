@@ -1,79 +1,73 @@
 package uo.asw.dbManagement.model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
 @Entity
-@Table(name = "agent")
 public class Agent {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue
 	private Long id;
 	
 	@NotNull
-	@Column(name = "identificador", unique=true)
-	private String identificador;
+	@Column(unique=true)
+	private String identifier;
 	
 	@NotNull
-	@Column(name = "contrasena")
-	private String contraseña;
+	private String password;
 	
 	@NotNull
-	private String nombre;
+	private String name="";
 	
 	@NotNull
-	private String email;
+	private String email="";
 	
-	private String localizacion;
+	private String location="";
 	
 	@NotNull
-	private String tipo;
+	private String kind;
 	
 	public Agent(){}
-
-	public Agent(String nombreUsuario, String contraseña,
-			String nombre, String email, String localizacion, 
-			String tipo, int tipoCodigo) {
-		super();
-		this.identificador = nombreUsuario;
-		this.contraseña = contraseña;
-		this.nombre = nombre;
-		this.email = email;
-		this.localizacion = localizacion;
-		this.tipo = tipo;
-	}
-
-
-	public String getNombreUsuario() {
-		return identificador;
-	}
-
-	public void setNombreUsuario(String nombreUsuario) {
-		this.identificador = nombreUsuario;
-	}
 	
-	public String getContraseña() {
-		return contraseña;
+	public Agent(String identifier, String password, String kind) {
+		super();
+		this.identifier = identifier;
+		this.password = password;
+		this.kind = kind;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public Long getId() {
+		return id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getIdentifier() {
+		return identifier;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
@@ -83,40 +77,34 @@ public class Agent {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public String getLocalizacion(){
-		return localizacion;
-	}
-	
-	public void setLocalizacion(String localizacion){
-		this.localizacion=localizacion;
-	}
-	
-	public String getTipo(){
-		return tipo;
-	}
-	
-	public void setTipo(String tipo){
-		this.tipo=tipo;
-	}
-	
-	public Long getId(){
-		return id;
-	}
-	
-	public String getIdentificador() {
-		return identificador;
+
+	public String getLocation() {
+		return location;
 	}
 
-	public void setIdentificador(String identificador) {
-		this.identificador = identificador;
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	@Override
+	public String toString() {
+		return "Agent [id=" + id + ", identifier=" + identifier + ", password=" + password + ", name=" + name
+				+ ", email=" + email + ", location=" + location + ", kind=" + kind + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((identificador == null) ? 0 : identificador.hashCode());
+		result = prime * result + ((identifier == null) ? 0 : identifier.hashCode());
 		return result;
 	}
 
@@ -129,23 +117,13 @@ public class Agent {
 		if (getClass() != obj.getClass())
 			return false;
 		Agent other = (Agent) obj;
-		if (identificador == null) {
-			if (other.identificador != null)
+		if (identifier == null) {
+			if (other.identifier != null)
 				return false;
-		} else if (!identificador.equals(other.identificador))
+		} else if (!identifier.equals(other.identifier))
 			return false;
 		return true;
 	}
-
-	@Override
-	public String toString() {
-		return "Agent ["
-				+ "nombreUsuario=" + identificador + ", "
-				+ "contraseña=" + contraseña + ", "
-				+ "nombre=" + nombre + ", "
-				+ "email=" + email + ", "
-				+ "localizacion=" + localizacion + ", "
-				+ "tipo=" + tipo + "]";
-	}
-
+	
 }
+

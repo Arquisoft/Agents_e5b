@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import uo.asw.agents.util.Check;
-import uo.asw.dbManagement.AgentDAO;
+import uo.asw.dbManagement.AgentsRepository;
 import uo.asw.dbManagement.model.Agent;
 import uo.asw.parser.reader.CSVKindsReader;
 
@@ -30,7 +30,7 @@ public class WebController {
 	}
 
 	@Autowired
-	private AgentDAO cc;
+	private AgentsRepository cc;
 
 	/**
 	 * Recibe los datos de login del usuario, busca si exite ese usuario y en
@@ -47,8 +47,6 @@ public class WebController {
 	 * @return view si exito, error si fracaso
 	 */
 	@RequestMapping(value = "/info", method = RequestMethod.POST)
-	
-
 	public String showInfo(HttpSession session, @RequestParam String login, @RequestParam String password, @RequestParam String kind, Model model) {
 		Agent c = null;
 		
@@ -57,11 +55,11 @@ public class WebController {
 			c = cc.getAgent(login, password, kind);
 			
 			if (c != null) {
-				int kindCode = CSVKindsReader.getKindCodeByKind(c.getTipo());
+				int kindCode = CSVKindsReader.getKindCodeByKind(c.getKind());
 				
 				session.setAttribute("agent",c);
 				session.setAttribute("tipoCodigo", kindCode);
-				model.addAttribute("resultado", "Welcome " + c.getNombre());
+				model.addAttribute("resultado", "Welcome " + c.getName());
 				return "view";
 			}
 		}
@@ -112,9 +110,9 @@ public class WebController {
 
 		Agent agent = (Agent) session.getAttribute("agent");
 		if (agent != null) {
-			if (agent.getContraseña().equals(password) && !newPassword.isEmpty()) {
-				agent.setContraseña(newPassword);
-				cc.updateInfo(agent);
+			if (agent.getPassword().equals(password) && !newPassword.isEmpty()) {
+				agent.setPassword(newPassword);
+				cc.updatePassword(agent.getPassword(),agent.getIdentifier());
 				model.addAttribute("resultado", "Contrasena actualizada correctamente");
 				return "view";
 			}
@@ -141,7 +139,7 @@ public class WebController {
 		if(agent != null){
 			if(!email.isEmpty() && Check.validateEmail(email)){
 				agent.setEmail(email);
-				cc.updateInfo(agent);
+				cc.updateInfo(agent,agent.getIdentifier());
 				model.addAttribute("resultado", "Agent email updated to: " + email);
 			}else{
 				model.addAttribute("resultado", "Agent email "+ email + "not valid.");
@@ -165,8 +163,8 @@ public class WebController {
 		
 		Agent agent = (Agent) session.getAttribute("agent");
 		if(agent != null){
-			agent.setNombre(nombre);
-			cc.updateInfo(agent);
+			agent.setName(nombre);
+			cc.updateInfo(agent,agent.getIdentifier());
 			model.addAttribute("resultado", "Agent name updated to: " + nombre);
 			
 			return "view";	
@@ -189,8 +187,8 @@ public class WebController {
 		Agent agent = (Agent) session.getAttribute("agent");
 		if(agent!=null) {
 			if(!kind.isEmpty() && Check.validateKind(kind)){
-				agent.setTipo(kind);
-				cc.updateInfo(agent);
+				agent.setKind(kind);
+				cc.updateInfo(agent,agent.getIdentifier());
 				model.addAttribute("resultado", "Agent kind updated to: " + kind);
 			}else{
 				model.addAttribute("resultado", "Agent kind " + kind + " not valid.");
@@ -217,8 +215,8 @@ public class WebController {
 			if(location.isEmpty())
 					location="";
 			
-			agent.setLocalizacion(location);
-			cc.updateInfo(agent);
+			agent.setLocation(location);
+			cc.updateInfo(agent,agent.getIdentifier());
 			model.addAttribute("resultado", "Agent localization updated to: " + location);
 			return "view";
 		}

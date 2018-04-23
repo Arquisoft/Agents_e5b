@@ -9,12 +9,12 @@
  
     <h1>
 		Change Agent <span
-			th:text="${session.agent.nombre}" /> Info
+			th:text="${session.agent.name}" /> Info
 			</h1>
 	
 	<h2>Change Password</h2>
 	
-	<form method="POST" action="changeInfo">
+	<form method="POST" action="changePassword">
 		<table>
 			<tr>
 				<td>Password:</td>
@@ -56,7 +56,7 @@
 			<tr>
 				<td>Name:</td>
 				<td><input type="text" name="nombre" required="required"
-					 th:value="${session.agent.nombre}" th:placeholder = "${session.agent.nombre}"/></td>
+					 th:value="${session.agent.name}" th:placeholder = "${session.agent.name}"/></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" name="updateName"
@@ -70,7 +70,7 @@
 			<tr>
 				<td>Localization:</td>
 				<td><input type="text" name="location"
-					 th:value="${session.agent.localizacion}" th:placeholder = "${session.agent.localizacion}"/></td>
+					 th:value="${session.agent.location}" th:placeholder = "${session.agent.location}"/></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" name="updateLocation"
@@ -85,7 +85,7 @@
 			<tr>
 				<td>Kind:</td>
 				<td><input type="text" name="kind" required="required"
-					 th:value="${session.agent.tipo}" th:placeholder = "${session.agent.tipo}"/></td>
+					 th:value="${session.agent.kind}" th:placeholder = "${session.agent.kind}"/></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input type="submit" name="updateKind"
