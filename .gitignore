@@ -1,7 +1,7 @@
 /target/
 
 .metadata
-bin/
+*.class
 tmp/
 *.tmp
 *.bak
