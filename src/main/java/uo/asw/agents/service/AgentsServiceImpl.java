@@ -34,20 +34,6 @@ public class AgentsServiceImpl implements AgentsService {
 		}
 		return null;
 	}
-	
-	@Override
-	public boolean changePassword(String login, String password, String kind, String newPassword) {
-		Agent agent = agentDAO.getAgent(login, password, kind);
-		
-		if(agent != null){
-			if(!newPassword.isEmpty()){
-				agent.setPassword(newPassword);
-				agentDAO.updateInfo(agent,agent.getIdentifier());
-				return true;	
-			}
-		}
-		return false;
-	}
 
 	@Override
 	public boolean changeEmail(String login, String password, String kind, String newEmail) {
@@ -56,7 +42,7 @@ public class AgentsServiceImpl implements AgentsService {
 		if(agent != null){
 			if(!newEmail.isEmpty() && Check.validateEmail(newEmail)){
 				agent.setEmail(newEmail);
-				agentDAO.updateInfo(agent,agent.getIdentifier());
+				agentDAO.updateEmail(newEmail,agent.getIdentifier());
 				return true;
 			}
 		}
@@ -69,7 +55,7 @@ public class AgentsServiceImpl implements AgentsService {
 		
 		if(agent != null){
 			agent.setName(newName);
-			agentDAO.updateInfo(agent,agent.getIdentifier());
+			agentDAO.updateName(newName,agent.getIdentifier());
 			
 			return true;
 		}
@@ -83,7 +69,7 @@ public class AgentsServiceImpl implements AgentsService {
 		if(agent!=null) {
 			if(!newKind.isEmpty() && Check.validateKind(newKind)){
 				agent.setKind(newKind);
-				agentDAO.updateInfo(agent,agent.getIdentifier());
+				agentDAO.updateKind(newKind,agent.getIdentifier());
 				return true;
 			}
 		}
@@ -96,7 +82,7 @@ public class AgentsServiceImpl implements AgentsService {
 		
 		if(agent!=null) {
 			agent.setLocation(newLocation);
-			agentDAO.updateInfo(agent,agent.getIdentifier());
+			agentDAO.updateLocation(newLocation,agent.getIdentifier());
 			return true;
 		}
 		return false;
@@ -128,11 +114,6 @@ public class AgentsServiceImpl implements AgentsService {
 		password=bCryptPasswordEncoder.encode(password);
 		agentDAO.updatePassword(password, identifier);
 		return password;
-	}
-	
-	@Override
-	public void updateInfo(Agent agent,String identifier) {
-		agentDAO.updateInfo(agent, identifier);
 	}
 
 }

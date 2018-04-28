@@ -5,7 +5,6 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import uo.asw.dbManagement.AgentsRepository;
 import uo.asw.dbManagement.model.Agent;
 
 @Service
@@ -14,7 +13,6 @@ public class InsertAgents {
 	@Autowired
 	private AgentsService agentsService;
 	
-	@SuppressWarnings("serial")
 	@PostConstruct
 	public void init() {
 		Agent agent1 = new Agent("31668313G", "1234", "Person");

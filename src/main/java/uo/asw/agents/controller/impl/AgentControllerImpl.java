@@ -62,7 +62,8 @@ public class AgentControllerImpl implements AgentController{
 		//En funcion del tipo de informacion a cambiar, llamamos a un metodo u otro del servicio
 		switch (infoToChange) {
 		case "password":
-			infoChangedCorrectly = agentsService.changePassword(login, password, kind, newInfo);
+			agentsService.updatePassword(password, login);
+			infoChangedCorrectly = true;
 			break;
 			
 		case "email":

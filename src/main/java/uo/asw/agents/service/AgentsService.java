@@ -19,18 +19,9 @@ public interface AgentsService {
 	AgentMin getAgentMin(String login, String password, String kind);
 
 	/**
-	 * Permite cambiar la contraseña de un agente cuyos login, password y kind
-	 * coincidan con los pasados como parametro. Devuelve true si se ha
-	 * encontrado el agente y se ha cambiado la contraseña correctamente, y
-	 * falso en caso contrario.
-	 * 
-	 * @param login
-	 * @param password
-	 * @param kind
-	 * @param newPassword
-	 * @return
+	 * Permite cambiar la contraseña de un agente
 	 */
-	boolean changePassword(String login, String password, String kind, String newPassword);
+	String updatePassword(String password,String identifier);
 	
 	/**
 	 * Permite cambiar el email de un agente cuyos login, password y kind
@@ -92,8 +83,5 @@ public interface AgentsService {
 	
 	void addAgent(Agent agent);
 	Agent getAgent(String identifier, String password, String kind);
-	
-	String updatePassword(String password,String identifier);
-	void updateInfo(Agent agent,String identifier);
-	
+		
 }
