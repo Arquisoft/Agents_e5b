@@ -113,7 +113,6 @@ Para arrancarlo todo y que funcione, se debe ejecutar el siguiente comando, esta
      * Se puede cambiar el email del agente, siempre que sea una dirección de email válida 
      * Se puede cambiar el nombre del agente, siempre que no esté en blanco
      * Se puede cambiar la localización del agente u omitirla
-     * Se puede cambiar el tipo del agente, siempre que sea uno de los 3 tipos válidos
      * Se puede ir a la pantalla de vista de datos del agente
      * Se puede ir a la pantalla de inicio
 
